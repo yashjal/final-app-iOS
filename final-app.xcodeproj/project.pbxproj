@@ -15,6 +15,7 @@
 		D5EBEBF81E837815004B374A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5EBEBF61E837815004B374A /* LaunchScreen.storyboard */; };
 		D5EBEC031E837816004B374A /* final_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EBEC021E837816004B374A /* final_appTests.m */; };
 		D5EBEC0E1E837816004B374A /* final_appUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EBEC0D1E837816004B374A /* final_appUITests.m */; };
+		D5EBEC1D1E837979004B374A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBEC1C1E837979004B374A /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D5EBEC091E837816004B374A /* final-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "final-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EBEC0D1E837816004B374A /* final_appUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = final_appUITests.m; sourceTree = "<group>"; };
 		D5EBEC0F1E837816004B374A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5EBEC1C1E837979004B374A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5EBEC1D1E837979004B374A /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 				D5EBEC011E837816004B374A /* final-appTests */,
 				D5EBEC0C1E837816004B374A /* final-appUITests */,
 				D5EBEBE61E837815004B374A /* Products */,
+				D5EBEC1B1E837979004B374A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +142,14 @@
 				D5EBEC0F1E837816004B374A /* Info.plist */,
 			);
 			path = "final-appUITests";
+			sourceTree = "<group>";
+		};
+		D5EBEC1B1E837979004B374A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5EBEC1C1E837979004B374A /* libsqlite3.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
