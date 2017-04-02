@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Google/SignIn.h>
+#import "dbManager.h"
 @import GoogleSignIn;
+@import Firebase;
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (strong, nonatomic) FIRDatabaseReference *dbRef;
+@property (nonatomic) dbManager* dBaseManager;
 @end
 

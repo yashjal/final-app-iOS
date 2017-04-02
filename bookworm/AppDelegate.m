@@ -12,14 +12,15 @@
 
 @end
 @import UIKit;
-@import Firebase;
+
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure]; // configure firebase before it can be used
+    self.dbRef = [[FIRDatabase database] reference];
+   // [self.dBaseManager initWithRef:self.dbRef];
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID; // setup google signin id for user
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError: &configureError];

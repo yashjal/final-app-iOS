@@ -24,6 +24,7 @@
                    addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
                        if (user) {
                            [self performSegueWithIdentifier:@"segueToMain" sender:nil];
+                        // Google Sign In Success
                        }
                    }];
 }
@@ -34,17 +35,6 @@
 }
 
 
--(void) emailPasswordSubmitted {
-    
-}
-
--(void) emailSignIn: (NSString*) email password:(NSString*) password {
-    [[FIRAuth auth] signInWithEmail:email
-                           password:password
-                         completion:^(FIRUser *user, NSError *error) {
-                             // ...
-                         }];
-}
 
 // Sign out
 - (IBAction)didTapSignOut:(id)sender {

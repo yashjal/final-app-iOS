@@ -11,7 +11,6 @@
 #import <Google/SignIn.h>
 
 @interface SignInViewController : ViewController <GIDSignInUIDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 @property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @end
