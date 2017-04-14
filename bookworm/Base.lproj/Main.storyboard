@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,29 +21,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iB4-x4-VGx" customClass="GIDSignInButton">
-                                <rect key="frame" x="67" y="450" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.63330262649849689" blue="0.099563167688390242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZS-R0-Bql">
-                                <rect key="frame" x="67" y="296" width="240" height="72"/>
+                                <rect key="frame" x="67" y="297" width="240" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign In With Email and Password"/>
+                                <state key="normal" title="Sign In With Email and Password">
+                                    <color key="titleColor" red="0.32973074520000001" green="0.83542395999999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="zXY-13-oS0" kind="presentation" id="7lg-tR-nvU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Lf-sOK">
-                                <rect key="frame" x="159" y="376" width="57" height="30"/>
+                                <rect key="frame" x="159" y="377" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Register"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="0.32973074520000001" green="0.83542395999999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="DUJ-s4-A36" kind="presentation" id="w8R-Lv-LxF"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bookworm Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="BaT-Av-nX9">
+                                <rect key="frame" x="49" y="104" width="277" height="218"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="paper-571937_1920.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="T7e-wU-sNN">
+                                <rect key="frame" x="0.0" y="52" width="545" height="355"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.22282406687736511" green="0.92754656076431274" blue="0.90307402610778809" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iB4-x4-VGx" customClass="GIDSignInButton">
+                                <rect key="frame" x="67" y="415" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.63330262649849689" blue="0.099563167688390242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.68983267000000004" green="0.92748588320000003" blue="0.90930299869999998" alpha="0.52109925180000005" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="VtU-y8-2EQ" id="Zcr-xW-Dzp"/>
@@ -54,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-274" y="100"/>
+            <point key="canvasLocation" x="-274.39999999999998" y="99.400299850074973"/>
         </scene>
         <!--Email Sign In View Controller-->
         <scene sceneID="sEu-nq-kfx">
@@ -234,8 +248,12 @@
             <point key="canvasLocation" x="124" y="1845"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Bookworm Logo.png" width="1024" height="1024"/>
+        <image name="paper-571937_1920.jpg" width="1920" height="1329"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lsx-c7-h7s"/>
-        <segue reference="yHE-EJ-h97"/>
+        <segue reference="bh6-Ym-3Pn"/>
+        <segue reference="w8R-Lv-LxF"/>
     </inferredMetricsTieBreakers>
 </document>
