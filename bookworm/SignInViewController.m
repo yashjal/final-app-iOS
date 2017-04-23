@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self addGradient];
     
     [GIDSignIn sharedInstance].uiDelegate = self;
     [[GIDSignIn sharedInstance] signInSilently];
@@ -34,6 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) addGradient {
+    UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
+    CAGradientLayer* gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.view.bounds;
+    gradientLayer.colors = @[(id)[UIColor grayColor].CGColor, (id)[UIColor blackColor].CGColor];
+    [self.view.layer insertSublayer:gradientLayer atIndex:0];
+}
 
 
 // Sign out

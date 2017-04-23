@@ -31,6 +31,7 @@
 		D50B0B021E91819600AE5C28 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0B011E91819600AE5C28 /* registerViewController.m */; };
 		D57C60611EA03D04004120AF /* Bookworm Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D57C60601EA03D04004120AF /* Bookworm Logo.png */; };
 		D57C60651EA04E79004120AF /* paper-571937_1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D57C60641EA04E79004120AF /* paper-571937_1920.jpg */; };
+		D5959A651EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5959A641EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		D50B0B011E91819600AE5C28 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		D57C60601EA03D04004120AF /* Bookworm Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bookworm Logo.png"; sourceTree = "<group>"; };
 		D57C60641EA04E79004120AF /* paper-571937_1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "paper-571937_1920.jpg"; sourceTree = "<group>"; };
+		D5959A641EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = old_paper_background_hd_picture_3_169573.jpg; sourceTree = "<group>"; };
 		EA65C28C3F82173C5E82579E /* Pods-bookwormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookwormTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bookwormTests/Pods-bookwormTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED102E5986BE151C60045598 /* Pods-bookwormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookwormUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bookwormUITests/Pods-bookwormUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE10D8E5B8837F7F429FCBC7 /* Pods_bookwormUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bookwormUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,7 @@
 		D50B0ABF1E90627C00AE5C28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D5959A641EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg */,
 				D57C60641EA04E79004120AF /* paper-571937_1920.jpg */,
 				D57C60601EA03D04004120AF /* Bookworm Logo.png */,
 				D50B0AC01E90627C00AE5C28 /* main.m */,
@@ -358,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5959A651EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg in Resources */,
 				D57C60651EA04E79004120AF /* paper-571937_1920.jpg in Resources */,
 				D50B0ACF1E90627C00AE5C28 /* LaunchScreen.storyboard in Resources */,
 				D50B0AF31E9063B800AE5C28 /* GoogleService-Info.plist in Resources */,
