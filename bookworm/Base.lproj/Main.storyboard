@@ -209,14 +209,14 @@
                     <connections>
                         <segue destination="ZkU-WZ-bcp" kind="relationship" relationship="viewControllers" id="E37-ZR-msa"/>
                         <segue destination="rCA-Iq-TBz" kind="relationship" relationship="viewControllers" id="3ht-Xw-QYO"/>
-                        <segue destination="zMO-4o-h5m" kind="relationship" relationship="viewControllers" id="wGL-zh-fid"/>
+                        <segue destination="W2K-zy-2xI" kind="relationship" relationship="viewControllers" id="zfv-wk-T8h"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77l-Lg-7Yt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="884" y="1103"/>
         </scene>
-        <!--My Books-->
+        <!--Item-->
         <scene sceneID="2SS-ng-mHW">
             <objects>
                 <tableViewController id="W2K-zy-2xI" customClass="MyBooksTableViewController" sceneMemberID="viewController">
@@ -224,9 +224,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="dWJ-Wp-1nT">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Master" id="Fj9-MN-ee2">
+                                    <barButtonItem key="rightBarButtonItem" systemItem="add" id="6km-qn-gz2">
+                                        <connections>
+                                            <action selector="insertNewObject:" destination="W2K-zy-2xI" id="9tx-AR-2TY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="6" reuseIdentifier="Cell" textLabel="Uyz-no-WLd" style="IBUITableViewCellStyleDefault" id="6p8-xy-9gx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6p8-xy-9gx" id="Tfv-ue-Gfs">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -251,11 +264,14 @@
                             <outlet property="delegate" destination="W2K-zy-2xI" id="nc1-NG-aSO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Books" id="r4h-FA-l2r"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="pPh-PV-yQl"/>
+                    <connections>
+                        <outlet property="navigationItem" destination="Fj9-MN-ee2" id="1Vb-DQ-LU7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zWX-7a-Gst" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2514" y="1448"/>
+            <point key="canvasLocation" x="1698" y="1404"/>
         </scene>
         <!--My Books Detail View Controller-->
         <scene sceneID="J7s-ew-B24">
@@ -273,7 +289,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="b8I-oB-Okk"/>
+                                    <navigationItem title="Title" id="qMN-P9-MeS">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="NEs-mt-pKK"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -282,24 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWW-g3-zdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2578" y="2195"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="OUf-yK-ff6">
-            <objects>
-                <navigationController id="zMO-4o-h5m" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="D2t-lZ-gtJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="heb-6U-ExO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="W2K-zy-2xI" kind="relationship" relationship="rootViewController" id="EII-8z-P5R"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nx6-qe-jev" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1722" y="1448"/>
+            <point key="canvasLocation" x="2358" y="1388"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="dXq-ya-xts">
