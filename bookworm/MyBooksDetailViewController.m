@@ -9,6 +9,13 @@
 #import "MyBooksDetailViewController.h"
 
 @interface MyBooksDetailViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *bookSummary;
+@property (weak, nonatomic) IBOutlet UILabel *bookTitle;
+@property (weak, nonatomic) IBOutlet UILabel *bookAuthor;
+@property (weak, nonatomic) IBOutlet UILabel *bookPublisher;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
+@property (weak, nonatomic) IBOutlet UILabel *bookCondition;
+
 
 @end
 
@@ -21,12 +28,19 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"Here");
-    
+    //NSLog(@"Here");
+
+    //UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed:)];
+    //self.navigationItem.leftBarButtonItem = backButton;
+
     [self configureView];
 }
 
@@ -47,5 +61,23 @@
         [self configureView];
     }
 }
+
+- (void)setBook:(NSString *)title author:(NSString *)auth publisher:(NSString *)publ
+      condition:(NSString *)cond summary:(NSString *)s {
+    
+    if (![self.bookTitle.text isEqualToString:title] ||  ![self.bookAuthor.text isEqualToString:auth] || ![self.bookPublisher.text isEqualToString:publ] ||
+        ![self.bookCondition.text isEqualToString:cond]) {
+        self.bookTitle.text = title;
+        self.bookAuthor.text = auth;
+        self.bookCondition.text = cond;
+        self.bookSummary.text = s;
+        self.bookPublisher.text = publ;
+    }
+}
+
+- (IBAction)backPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

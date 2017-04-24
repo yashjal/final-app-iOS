@@ -47,6 +47,7 @@
     }
     [self.objects insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
 }
@@ -62,8 +63,9 @@
         MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController]; //topViewController];
         [controller setDetailItem:object];
         //controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        //controller.navigationItem.leftBarButtonItem = controller.backButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+        //controller.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
+        //controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
 
