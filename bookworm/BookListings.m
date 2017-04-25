@@ -24,35 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.ref = [[FIRDatabase database] reference];
-    //self.dictBooks =[[NSMutableDictionary alloc] init];
-    
+    self.ref = [[FIRDatabase database] reference];    
     
     UITableView *tableView = (id)[self.view viewWithTag:1];
-    
-//    [[self.ref child:@"books"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        //NSLog(@"snapshot = %@",snapshot.value);
-//        NSDictionary *dict = snapshot.value;
-//        self.books = [dict allKeys];
-//        
-//        for (NSString *word in self.books) {
-//            
-//            
-//            NSString *firstLetter = [[word substringToIndex:1] uppercaseString];
-//            NSMutableArray *letterList = [self.dictBooks objectForKey:firstLetter];
-//            if (!letterList) {
-//                letterList = [NSMutableArray array];
-//                [self.dictBooks setObject:letterList forKey:firstLetter];
-//            }
-//            if (![letterList containsObject:word]) {
-//            [   letterList addObject:word];
-//            }
-//        }
-//        self.bookSectionTitles = [[self.dictBooks allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-//
-//        
-//        [tableView reloadData];
-//    }];
     
     UIEdgeInsets contentInset = tableView.contentInset;
     
@@ -79,20 +53,6 @@
         //NSArray *x = [dict allKeys];
         self.dictBooks = [self sectionSetup:self.books];
         
-//        for (NSString *word in self.books) {
-//            
-//            
-//            NSString *firstLetter = [[word substringToIndex:1] uppercaseString];
-//            NSMutableArray *letterList = [self.dictBooks objectForKey:firstLetter];
-//            if (!letterList) {
-//                letterList = [NSMutableArray array];
-//                [self.dictBooks setObject:letterList forKey:firstLetter];
-//            }
-//            if (![letterList containsObject:word]) {
-//                [   letterList addObject:word];
-//            }
-//        }
-        
         self.bookSectionTitles = [[self.dictBooks allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         
         
@@ -105,7 +65,6 @@
     NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
     
     for (NSString *word in bookTitles) {
-        
         
         NSString *firstLetter = [[word substringToIndex:1] uppercaseString];
         NSMutableArray *letterList = [d objectForKey:firstLetter];
