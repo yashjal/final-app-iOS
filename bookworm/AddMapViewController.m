@@ -1,30 +1,30 @@
 //
-//  MapViewController.m
+//  AddMapViewController.m
 //  bookworm
 //
-//  Created by Yash Jalan on 4/16/17.
+//  Created by Yash Jalan on 4/25/17.
 //  Copyright © 2017 nyu.edu. All rights reserved.
 //
 
-#import "MapViewController.h"
-#import <MapKit/MapKit.h>
-#import "Place.h"
-@import Firebase;
+#import "AddMapViewController.h"
 
-@interface MapViewController ()
-
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (copy, nonatomic) NSArray *places;
+@interface AddMapViewController () <CLLocationManagerDelegate>
 
 @end
 
-@implementation MapViewController
+@implementation AddMapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.locationManager = [[CLLocationManager alloc] init];
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
+    [self.mapAdd addGestureRecognizer:lpgr];
+    
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager requestWhenInUseAuthorization];
@@ -37,41 +37,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.ref = [[FIRDatabase database] reference];
-    
-    [[self.ref child:@"books"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        //NSLog(@"snapshot = %@",snapshot.value);
-        NSDictionary *dict = snapshot.value;
-        NSArray *keys = [dict allKeys];
-        //NSMutableArray *pl = [[NSMutableArray alloc] init];
-        
-        for (NSString *key in keys) {
-            NSDictionary *object = [dict objectForKey: key];
-            if (object[@"lattitude"] && object[@"longitude"] && ![object[@"longitude"] isEqualToString:@""] && ![object[@"lattitude"] isEqualToString:@""]) {
-                CLLocationCoordinate2D center;
-                center.latitude = [object[@"lattitude"] doubleValue];
-                center.longitude = [object[@"longitude"] doubleValue];
-                if (CLLocationCoordinate2DIsValid(center)) {
-                
-                    Place *p = [[Place alloc] init];
-                    p.coordinate = center;
-                    p.title = key;
-                    if (object[@"user"]) {
-                        p.subtitle = object[@"user"];
-                    } else {
-                        p.subtitle = object[@"author"];
-                    }
-                    //[pl addObject:p];
-                    [self.mapView addAnnotation:p];
-                }
-            }
-        }
-        
-        //self.places = [pl copy];
-        
-    }];
-
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -81,13 +46,13 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         case kCLAuthorizationStatusAuthorizedAlways:
         case kCLAuthorizationStatusAuthorizedWhenInUse:
             [self.locationManager startUpdatingLocation];
-            self.mapView.showsUserLocation = YES;
+            self.mapAdd.showsUserLocation = YES;
             break;
         case kCLAuthorizationStatusNotDetermined:
         case kCLAuthorizationStatusRestricted:
         case kCLAuthorizationStatusDenied:
             [self.locationManager stopUpdatingLocation];
-            self.mapView.showsUserLocation = NO;
+            self.mapAdd.showsUserLocation = NO;
             break;
     }
 }
@@ -98,17 +63,11 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     CLLocation *newLocation = [locations lastObject];
     
     if (self.previousPoint == nil) {
-
-//        Place *start = [[Place alloc] init];
-//        start.coordinate = newLocation.coordinate;
-//        start.title = @"Start Point";
-//        start.subtitle = @"This is where we started!";
-//        [self.mapView addAnnotation:start];
         
         MKCoordinateRegion region;
         region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate,
-                                                    1500, 1500);
-        [self.mapView setRegion:region animated:YES];
+                                                    1000, 1000);
+        [self.mapAdd setRegion:region animated:YES];
     }
     
     self.previousPoint = newLocation;
@@ -127,6 +86,26 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                                                        style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+//http://stackoverflow.com/questions/3959994/how-to-add-a-push-pin-to-a-mkmapviewios-when-touching/3960754#3960754
+
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
+        return;
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapAdd];
+    CLLocationCoordinate2D touchMapCoordinate =
+    [self.mapAdd convertPoint:touchPoint toCoordinateFromView:self.mapAdd];
+    
+    MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
+    annot.coordinate = touchMapCoordinate;
+    [self.mapAdd addAnnotation:annot];
+    NSLog(@"%f",annot.coordinate.latitude);
+    NSString *s = [NSString stringWithFormat:@"%f", annot.coordinate.latitude];
+    NSString *t = [NSString stringWithFormat:@"%f", annot.coordinate.longitude];
+    [self.delegate mapViewController:self lattitude:s longitude:t];
 }
 
 

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="340" y="441"/>
+            <point key="canvasLocation" x="-588" y="1047"/>
         </scene>
         <!--Email Sign In View Controller-->
         <scene sceneID="sEu-nq-kfx">
@@ -152,9 +153,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpg-rc-Lhs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="124" y="1102"/>
+            <point key="canvasLocation" x="158" y="988"/>
         </scene>
-        <!--Item 2-->
+        <!--Map-->
         <scene sceneID="odf-O1-qkM">
             <objects>
                 <viewController id="rCA-Iq-TBz" customClass="MapViewController" sceneMemberID="viewController">
@@ -173,7 +174,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="uqo-0I-gZu"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="uqo-0I-gZu"/>
                     <connections>
                         <outlet property="mapView" destination="3UH-xF-n4g" id="kqQ-OR-YcU"/>
                     </connections>
@@ -182,7 +183,7 @@
             </objects>
             <point key="canvasLocation" x="1636" y="715.59220389805103"/>
         </scene>
-        <!--Item 1-->
+        <!--All Books-->
         <scene sceneID="Oaf-Cz-hTZ">
             <objects>
                 <viewController id="ZkU-WZ-bcp" customClass="BookListings" sceneMemberID="viewController">
@@ -219,11 +220,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="oKw-H1-m0z"/>
+                    <tabBarItem key="tabBarItem" title="All Books" id="oKw-H1-m0z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hRU-8T-ZDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1636" y="60.719640179910051"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="EVW-fg-s6r">
+            <objects>
+                <viewController id="1fL-UJ-uUQ" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fLf-jA-p1U"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Zq-D3-Vkb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Txc-FN-UGS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eWh-YH-idL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3170" y="987"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="W7T-wD-j2r">
@@ -244,7 +263,7 @@
             </objects>
             <point key="canvasLocation" x="884" y="1103"/>
         </scene>
-        <!--Item-->
+        <!--My Books-->
         <scene sceneID="2SS-ng-mHW">
             <objects>
                 <tableViewController id="W2K-zy-2xI" customClass="MyBooksTableViewController" sceneMemberID="viewController">
@@ -256,12 +275,19 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="Master" id="Fj9-MN-ee2">
-                                    <barButtonItem key="rightBarButtonItem" systemItem="add" id="6km-qn-gz2">
-                                        <connections>
-                                            <segue destination="EdD-B7-IKn" kind="show" id="Vl3-BQ-2Uh"/>
-                                        </connections>
-                                    </barButtonItem>
+                                <navigationItem title="MyBooks" id="Fj9-MN-ee2">
+                                    <rightBarButtonItems>
+                                        <barButtonItem systemItem="add" id="6km-qn-gz2">
+                                            <connections>
+                                                <segue destination="EdD-B7-IKn" kind="show" id="Vl3-BQ-2Uh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem title="Profile" id="ntC-Q5-1GT">
+                                            <connections>
+                                                <segue destination="1fL-UJ-uUQ" kind="show" id="Cua-b3-yKJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </rightBarButtonItems>
                                 </navigationItem>
                             </items>
                         </navigationBar>
@@ -292,7 +318,7 @@
                             <outlet property="delegate" destination="W2K-zy-2xI" id="nc1-NG-aSO"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="pPh-PV-yQl"/>
+                    <tabBarItem key="tabBarItem" title="My Books" id="pPh-PV-yQl"/>
                     <connections>
                         <outlet property="navigationItem" destination="Fj9-MN-ee2" id="1Vb-DQ-LU7"/>
                     </connections>
@@ -391,7 +417,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcJ-c3-gHI">
-                                <rect key="frame" x="157" y="493" width="32" height="30"/>
+                                <rect key="frame" x="150" y="546" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add!"/>
                                 <connections>
@@ -407,6 +433,34 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="ihz-6m-d6K"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9T-Gd-Ksk">
+                                <rect key="frame" x="59" y="460" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Location"/>
+                                <connections>
+                                    <segue destination="eA2-Lb-NL4" kind="show" identifier="showMap" id="WCN-rq-k4e"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpk-2a-4Ba">
+                                <rect key="frame" x="164" y="461" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFc-2Q-Aky">
+                                <rect key="frame" x="241" y="461" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -416,6 +470,8 @@
                         <outlet property="Publisher" destination="RtP-QV-w82" id="Fhe-pa-ZmU"/>
                         <outlet property="Summary" destination="kFc-zo-Iou" id="9Jc-G2-sLm"/>
                         <outlet property="Title" destination="Aby-dP-J5W" id="Erb-nN-nR9"/>
+                        <outlet property="lattitude" destination="dpk-2a-4Ba" id="mII-3Q-RR9"/>
+                        <outlet property="longitude" destination="aFc-2Q-Aky" id="viA-Tn-TWe"/>
                         <outlet property="signOutButton" destination="kUr-uk-dgN" id="CIr-Y1-bbS"/>
                         <outlet property="title" destination="Aby-dP-J5W" id="a8o-GX-Edd"/>
                     </connections>
@@ -423,6 +479,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMT-eG-clP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2397.5999999999999" y="1403.7481259370315"/>
+        </scene>
+        <!--Add Map View Controller-->
+        <scene sceneID="G9M-tO-9SB">
+            <objects>
+                <viewController id="eA2-Lb-NL4" customClass="AddMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5RC-HX-90K"/>
+                        <viewControllerLayoutGuide type="bottom" id="o7D-Ov-Zpx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7CW-tv-e1d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zYa-Es-VtL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapAdd" destination="zYa-Es-VtL" id="GhQ-DP-Wej"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nW5-3X-f21" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3104.8000000000002" y="1656.521739130435"/>
         </scene>
         <!--My Books Detail View Controller-->
         <scene sceneID="J7s-ew-B24">
@@ -601,7 +684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3X5-nq-RB3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="434" y="1776"/>
+            <point key="canvasLocation" x="158" y="1657"/>
         </scene>
     </scenes>
     <resources>
@@ -609,8 +692,8 @@
         <image name="old_paper_background_hd_picture_3_169573.jpg" width="600" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IyG-V8-GWp"/>
-        <segue reference="Lsx-c7-h7s"/>
+        <segue reference="bh6-Ym-3Pn"/>
         <segue reference="5Rq-D0-nAm"/>
+        <segue reference="w8R-Lv-LxF"/>
     </inferredMetricsTieBreakers>
 </document>

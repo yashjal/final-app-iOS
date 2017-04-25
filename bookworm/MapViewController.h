@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "AppDelegate.h"
 
 @interface MapViewController : UIViewController <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *previousPoint;
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
 
 @end

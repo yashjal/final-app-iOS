@@ -7,11 +7,14 @@
 //
 
 #import "AddBookViewController.h"
+#import "AddMapViewController.h"
 @import Firebase;
 
 
-@interface AddBookViewController ()
+@interface AddBookViewController () <AddMapViewControllerDelegate>
+
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
+
 @end
 
 @implementation AddBookViewController
@@ -41,6 +44,10 @@
         [data setObject:self.Summary.text forKey:@"summary"];
         [data setObject:self.Publisher.text forKey:@"publ"];
         [data setObject:user.email forKey:@"user"];
+        if (self.lattitude.hasText && self.longitude.hasText) {
+            [data setObject:self.lattitude.text forKey:@"lattitude"];
+            [data setObject:self.longitude.text forKey:@"longitude"];
+        }
     
         [[[_ref child:@"books"] child:self.Title.text] setValue:data withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -48,12 +55,9 @@
             
         }];
         
-        
     }
-
-    
-    
 }
+
 - (IBAction)signOut:(id)sender {
     NSError *signOutError;
     BOOL status = [[FIRAuth auth] signOut:&signOutError];
@@ -64,14 +68,22 @@
     NSLog(@"Logged Out");
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)mapViewController:(AddMapViewController *)addMap lattitude:(NSString *)latt longitude: (NSString *)longt {
+    [addMap dismissViewControllerAnimated:YES completion:nil];
+    self.lattitude.text = latt;
+    self.longitude.text = longt;
+    
+    //NSLog(@"Here");
+    NSLog(@"long: %@",longt);
 }
-*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showMap"]) {
+        AddMapViewController *addMap = segue.destinationViewController;
+        addMap.delegate = self;
+    }
+}
+
 
 @end

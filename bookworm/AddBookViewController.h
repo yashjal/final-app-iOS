@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 @interface AddBookViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIButton *signOutButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *Author;
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *Publisher;
 @property (weak, nonatomic) IBOutlet UITextField *Summary;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (weak, nonatomic) IBOutlet UITextField *lattitude;
+@property (weak, nonatomic) IBOutlet UITextField *longitude;
 
 
 @end
