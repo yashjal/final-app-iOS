@@ -62,8 +62,12 @@
     [[FIRAuth auth] signInWithEmail:email
                            password:password
                          completion:^(FIRUser *user, NSError *error) {
-                             NSLog(@"7");
+                             if (error) {
+                                 NSLog(@"%@",error.localizedDescription);
+                             } else {
+                             NSLog(@"7 - Signed in ");
                              [self performSegueWithIdentifier:@"toMain" sender:Nil];
+                             }
                          }];
 }
 
@@ -73,6 +77,7 @@
     gradientLayer.frame = self.view.bounds;
     gradientLayer.colors = @[(id)[UIColor grayColor].CGColor, (id)[UIColor blackColor].CGColor];
     [self.view.layer insertSublayer:gradientLayer atIndex:0];
+    
 }
 
 

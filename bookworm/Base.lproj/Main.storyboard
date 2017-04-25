@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PGs-pY-M7P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -398,6 +398,15 @@
                                     <action selector="addBook:" destination="EdD-B7-IKn" eventType="touchUpInside" id="3YT-ef-wrU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUr-uk-dgN">
+                                <rect key="frame" x="16" y="20" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOut:" destination="EdD-B7-IKn" eventType="touchUpInside" id="Uf5-tn-U6b"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="ihz-6m-d6K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -407,6 +416,7 @@
                         <outlet property="Publisher" destination="RtP-QV-w82" id="Fhe-pa-ZmU"/>
                         <outlet property="Summary" destination="kFc-zo-Iou" id="9Jc-G2-sLm"/>
                         <outlet property="Title" destination="Aby-dP-J5W" id="Erb-nN-nR9"/>
+                        <outlet property="signOutButton" destination="kUr-uk-dgN" id="CIr-Y1-bbS"/>
                         <outlet property="title" destination="Aby-dP-J5W" id="a8o-GX-Edd"/>
                     </connections>
                 </viewController>

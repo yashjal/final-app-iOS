@@ -11,7 +11,7 @@
 
 
 @interface AddBookViewController ()
-
+@property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 @end
 
 @implementation AddBookViewController
@@ -20,6 +20,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
      self.ref = [[FIRDatabase database] reference];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    if ([FIRAuth auth].currentUser) {
+        // User is signed in.
+        // ...
+       FIRUser *user = [FIRAuth auth].currentUser;
+    } else {
+        // No user is signed in.
+        // ...
+        NSLog(@"User not in");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,6 +60,15 @@
 
     
     
+}
+- (IBAction)signOut:(id)sender {
+    NSError *signOutError;
+    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+        return;
+    }
+    NSLog(@"Logged Out");
 }
 
 /*
