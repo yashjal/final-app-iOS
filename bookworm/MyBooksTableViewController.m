@@ -14,6 +14,7 @@
 @interface MyBooksTableViewController ()
 
 @property NSArray *objects;
+@property NSMutableArray *books;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 
 @end
@@ -25,29 +26,29 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.ref = [[FIRDatabase database] reference];
-    FIRUser *user = [FIRAuth auth].currentUser;
-    
-    if (user) {
-        [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
-          queryEqualToValue:user.email] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-         
-             if (snapshot.value != [NSNull null]){
-                 NSLog(@"snapshot = %@",snapshot.value);
-                 NSDictionary *dict = snapshot.value;
-                 self.objects = [dict allKeys];
-                 [self.tableView reloadData];
-                 
-             }
-         }];
-    }
 
-    
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    //self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    
+    if (user) {
+        [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
+          queryEqualToValue:user.email] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            
+            if (snapshot.value != [NSNull null]){
+                //NSLog(@"snapshot = %@",snapshot.value);
+                NSDictionary *dict = snapshot.value;
+                self.objects = [dict allKeys];
+                self.books = [NSMutableArray arrayWithArray:self.objects];
+                [self.tableView reloadData];
+                
+            }
+        }];
+    }
 }
 
 
@@ -74,7 +75,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *object = self.objects[indexPath.row];
+        NSString *object = self.books[indexPath.row];
 
         
         [[[self.ref child:@"books"] child:object] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -98,14 +99,14 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return self.books.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    NSString *s = self.objects[indexPath.row];
+    NSString *s = self.books[indexPath.row];
     cell.textLabel.text = s;
     return cell;
 }
@@ -116,15 +117,21 @@
     return YES;
 }
 
-/*
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSString *object = self.books[indexPath.row];
+        [[[self.ref child:@"books"] child:object] setValue:nil withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+            //NSLog(@"HERE");
+            [self.books removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+        }];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
-*/
+
 
 @end
