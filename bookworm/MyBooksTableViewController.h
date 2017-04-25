@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 
 @interface MyBooksTableViewController : UITableViewController
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
 
 @end

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookPublisher;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 @property (weak, nonatomic) IBOutlet UILabel *bookCondition;
+@property (weak, nonatomic) IBOutlet UILabel *bookUser;
 
 
 @end
@@ -63,7 +64,7 @@
 }
 
 - (void)setBook:(NSString *)title author:(NSString *)auth publisher:(NSString *)publ
-      condition:(NSString *)cond summary:(NSString *)s {
+      condition:(NSString *)cond summary:(NSString *)s user:(NSString *)u{
     
     if (![self.bookTitle.text isEqualToString:title] ||  ![self.bookAuthor.text isEqualToString:auth] || ![self.bookPublisher.text isEqualToString:publ] ||
         ![self.bookCondition.text isEqualToString:cond]) {
@@ -72,6 +73,7 @@
         self.bookCondition.text = cond;
         self.bookSummary.text = s;
         self.bookPublisher.text = publ;
+        self.bookUser.text = u;
     }
 }
 

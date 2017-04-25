@@ -83,7 +83,7 @@
             //NSLog(@"snapshot = %@",snapshot.value);
             NSDictionary *dict = snapshot.value;
             MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
-            [controller setBook:book author:[dict objectForKey:@"author"] publisher:[dict objectForKey:@"publ"] condition:[dict objectForKey:@"condition"] summary:[dict objectForKey:@"summary"]];
+            [controller setBook:book author:[dict objectForKey:@"author"] publisher:[dict objectForKey:@"publ"] condition:[dict objectForKey:@"condition"] summary:[dict objectForKey:@"summary"] user:[dict objectForKey:@"user"]];
 
             
         }];

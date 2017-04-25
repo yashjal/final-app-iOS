@@ -13,6 +13,6 @@
 @property (strong, nonatomic) NSDate *detailItem;
 
 - (void)setBook:(NSString *)title author:(NSString *)auth publisher:(NSString *)publ
-      condition:(NSString *)cond summary:(NSString *)s;
+      condition:(NSString *)cond summary:(NSString *)s user:(NSString *)u;
 
 @end

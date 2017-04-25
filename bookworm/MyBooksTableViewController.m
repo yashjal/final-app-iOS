@@ -8,11 +8,12 @@
 
 #import "MyBooksTableViewController.h"
 #import "MyBooksDetailViewController.h"
+@import Firebase;
 
 
 @interface MyBooksTableViewController ()
 
-@property NSMutableArray *objects;
+@property NSArray *objects;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 
 @end
@@ -22,11 +23,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem;
-//    
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
-    //self.detailViewController = (MyBooksDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.ref = [[FIRDatabase database] reference];
+    FIRUser *user = [FIRAuth auth].currentUser;
+    
+    if (user) {
+        [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
+          queryEqualToValue:user.email] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+         
+             if (snapshot.value != [NSNull null]){
+                 NSLog(@"snapshot = %@",snapshot.value);
+                 NSDictionary *dict = snapshot.value;
+                 self.objects = [dict allKeys];
+                 [self.tableView reloadData];
+                 
+             }
+         }];
+    }
+
+    
 }
 
 
@@ -41,16 +56,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)insertNewObject:(id)sender {
-    if (!self.objects) {
-        self.objects = [[NSMutableArray alloc] init];
-    }
-    [self.objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-}
+//- (IBAction)insertNewObject:(id)sender {
+//    if (!self.objects) {
+//        self.objects = [[NSMutableArray alloc] init];
+//    }
+//    [self.objects insertObject:[NSDate date] atIndex:0];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//
+//}
 
 
 
@@ -59,13 +74,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
-        MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController]; //topViewController];
-        [controller setDetailItem:object];
-        //controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        //controller.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        NSString *object = self.objects[indexPath.row];
 
-        //controller.navigationItem.leftItemsSupplementBackButton = YES;
+        
+        [[[self.ref child:@"books"] child:object] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            //NSLog(@"snapshot = %@",snapshot.value);
+            NSDictionary *dict = snapshot.value;
+            MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
+            [controller setBook:object author:[dict objectForKey:@"author"] publisher:[dict objectForKey:@"publ"] condition:[dict objectForKey:@"condition"] summary:[dict objectForKey:@"summary"] user:[dict objectForKey:@"user"]];
+            
+            
+        }];
+        
     }
 }
 
@@ -85,8 +105,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    NSString *s = self.objects[indexPath.row];
+    cell.textLabel.text = s;
     return cell;
 }
 
@@ -96,7 +116,7 @@
     return YES;
 }
 
-
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.objects removeObjectAtIndex:indexPath.row];
@@ -105,6 +125,6 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
-
+*/
 
 @end
