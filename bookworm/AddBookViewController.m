@@ -34,21 +34,22 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)addBook:(id)sender {
-    if (self.Title.text != Nil && self.Author.text != Nil && [FIRAuth auth].currentUser) {
+    if (self.Title.text != Nil && self.Author.text != Nil && self.Condition.text != Nil && self.Summary.text != Nil && self.Publisher.text != Nil && [FIRAuth auth].currentUser) {
         
         //NSMutableDictionary* dt = [[NSMutableDictionary alloc]init];
         FIRUser *user = [FIRAuth auth].currentUser;
         
-        NSMutableDictionary* data = [[NSMutableDictionary alloc]init];
+        NSMutableDictionary* data = [[NSMutableDictionary alloc] init];
     
-        [data setValue:self.Author.text forKey:@"author"];
-        [data setValue:self.Condition.text forKey:@"condition"];
-        [data setValue:self.Summary.text forKey:@"summary"];
-        [data setValue:self.Publisher.text forKey:@"publ"];
-        [data setValue:user.email forKey:@"user"];
+        [data setObject:self.Author.text forKey:@"author"];
+        
+        [data setObject:self.Condition.text forKey:@"condition"];
+        [data setObject:self.Summary.text forKey:@"summary"];
+        [data setObject:self.Publisher.text forKey:@"publ"];
+        [data setObject:user.email forKey:@"user"];
         if (self.lattitude.hasText && self.longitude.hasText) {
-            [data setValue:self.lattitude.text forKey:@"lattitude"];
-            [data setValue:self.longitude.text forKey:@"longitude"];
+            [data setObject:self.lattitude.text forKey:@"lattitude"];
+            [data setObject:self.longitude.text forKey:@"longitude"];
         }
     
         [[[_ref child:@"books"] child:self.Title.text] setValue:data withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
