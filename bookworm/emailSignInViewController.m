@@ -16,12 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addGradient];
     
     // Do any additional setup after loading the view.
      self.ref = [[FIRDatabase database] reference];
     self.errorHidden.hidden = YES;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -71,14 +71,7 @@
                          }];
 }
 
--(void) addGradient {
-    UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
-    CAGradientLayer* gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.view.bounds;
-    gradientLayer.colors = @[(id)[UIColor grayColor].CGColor, (id)[UIColor blackColor].CGColor];
-    [self.view.layer insertSublayer:gradientLayer atIndex:0];
-    
-}
+
 
 
 

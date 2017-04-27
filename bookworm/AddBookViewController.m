@@ -53,8 +53,13 @@
         }
     
         [[[_ref child:@"books"] child:self.Title.text] setValue:data withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            //NSLog(@"HERE");
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            } else {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                //NSLog(@"HERE");
+            }
+
             
         }];
         

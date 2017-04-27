@@ -29,7 +29,6 @@
 		D50B0AE51E90627D00AE5C28 /* bookwormUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AE41E90627D00AE5C28 /* bookwormUITests.m */; };
 		D50B0AF31E9063B800AE5C28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D50B0AF21E9063B800AE5C28 /* GoogleService-Info.plist */; };
 		D50B0AF61E91407F00AE5C28 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AF51E91407F00AE5C28 /* SignInViewController.m */; };
-		D50B0AFC1E91501800AE5C28 /* dbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AFB1E91501800AE5C28 /* dbManager.m */; };
 		D50B0AFF1E91722900AE5C28 /* emailSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AFE1E91722900AE5C28 /* emailSignInViewController.m */; };
 		D50B0B021E91819600AE5C28 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0B011E91819600AE5C28 /* registerViewController.m */; };
 		D57C60611EA03D04004120AF /* Bookworm Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D57C60601EA03D04004120AF /* Bookworm Logo.png */; };
@@ -97,8 +96,6 @@
 		D50B0AF21E9063B800AE5C28 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D50B0AF41E91407F00AE5C28 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		D50B0AF51E91407F00AE5C28 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		D50B0AFA1E91501800AE5C28 /* dbManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbManager.h; sourceTree = "<group>"; };
-		D50B0AFB1E91501800AE5C28 /* dbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbManager.m; sourceTree = "<group>"; };
 		D50B0AFD1E91722900AE5C28 /* emailSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emailSignInViewController.h; sourceTree = "<group>"; };
 		D50B0AFE1E91722900AE5C28 /* emailSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = emailSignInViewController.m; sourceTree = "<group>"; };
 		D50B0B001E91819600AE5C28 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 				D50B0AF51E91407F00AE5C28 /* SignInViewController.m */,
 				D50B0AFD1E91722900AE5C28 /* emailSignInViewController.h */,
 				D50B0AFE1E91722900AE5C28 /* emailSignInViewController.m */,
-				D50B0AFA1E91501800AE5C28 /* dbManager.h */,
-				D50B0AFB1E91501800AE5C28 /* dbManager.m */,
 				D50B0ACB1E90627C00AE5C28 /* Assets.xcassets */,
 				D50B0ACD1E90627C00AE5C28 /* LaunchScreen.storyboard */,
 				D50B0AD01E90627C00AE5C28 /* Info.plist */,
@@ -556,7 +551,6 @@
 				D50B0AC41E90627C00AE5C28 /* AppDelegate.m in Sources */,
 				D50B0AFF1E91722900AE5C28 /* emailSignInViewController.m in Sources */,
 				D50B0AC11E90627C00AE5C28 /* main.m in Sources */,
-				D50B0AFC1E91501800AE5C28 /* dbManager.m in Sources */,
 				8CEC38F31EA416AA001C8442 /* MyBooksTableViewController.m in Sources */,
 				D50B0B021E91819600AE5C28 /* registerViewController.m in Sources */,
 				8CEC38F91EA4647B001C8442 /* MapViewController.m in Sources */,

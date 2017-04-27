@@ -36,10 +36,10 @@
 }
 
 -(void) addGradient {
-    UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
+    //UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
     CAGradientLayer* gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.view.bounds;
-    gradientLayer.colors = @[(id)[UIColor grayColor].CGColor, (id)[UIColor blackColor].CGColor];
+    gradientLayer.colors = @[(id)[UIColor brownColor].CGColor, (id)[UIColor grayColor].CGColor];
     [self.view.layer insertSublayer:gradientLayer atIndex:0];
 }
 
@@ -48,6 +48,12 @@
 - (IBAction)didTapSignOut:(id)sender {
     [[GIDSignIn sharedInstance] signOut];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+
 /*
 #pragma mark - Navigation
 

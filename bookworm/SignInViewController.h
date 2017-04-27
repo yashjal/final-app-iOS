@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
-#import <Google/SignIn.h>
 
 @interface SignInViewController : ViewController <GIDSignInUIDelegate>
 
