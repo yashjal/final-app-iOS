@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +29,7 @@
                                     <color key="titleColor" red="0.32973074520000001" green="0.83542395999999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zXY-13-oS0" kind="presentation" modalTransitionStyle="partialCurl" id="7lg-tR-nvU"/>
+                                    <segue destination="zXY-13-oS0" kind="presentation" modalTransitionStyle="flipHorizontal" id="7lg-tR-nvU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Lf-sOK">
@@ -39,7 +39,7 @@
                                     <color key="titleColor" red="0.32973074520000001" green="0.83542395999999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="DUJ-s4-A36" kind="presentation" identifier="" modalTransitionStyle="partialCurl" id="w8R-Lv-LxF"/>
+                                    <segue destination="DUJ-s4-A36" kind="presentation" identifier="" modalTransitionStyle="flipHorizontal" id="w8R-Lv-LxF"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bookworm Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="BaT-Av-nX9">
@@ -71,8 +71,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailField" destination="VtU-y8-2EQ" id="Zcr-xW-Dzp"/>
-                        <outlet property="passwordField" destination="uE2-Qb-mHc" id="05F-op-zia"/>
                         <outlet property="signInButton" destination="iB4-x4-VGx" id="Z8L-uA-uhq"/>
                         <segue destination="PGs-pY-M7P" kind="presentation" identifier="segueToMain" modalTransitionStyle="flipHorizontal" id="bh6-Ym-3Pn"/>
                     </connections>
@@ -138,7 +136,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <segue destination="DUJ-s4-A36" kind="presentation" modalTransitionStyle="partialCurl" id="Lsx-c7-h7s"/>
+                                    <segue destination="DUJ-s4-A36" kind="presentation" modalTransitionStyle="flipHorizontal" id="Lsx-c7-h7s"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ir-mE-l44">
@@ -242,7 +240,7 @@
         <!--All Books-->
         <scene sceneID="Oaf-Cz-hTZ">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="ZkU-WZ-bcp" customClass="BookListings" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="ZkU-WZ-bcp" customClass="BookListings" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dDh-bB-ge3"/>
                         <viewControllerLayoutGuide type="bottom" id="Foi-vk-d0D"/>
@@ -263,7 +261,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4SL-IP-Yhr" id="XyT-Qh-I0H">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="23"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="22.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -313,7 +311,7 @@
         <!--Profile View Controller-->
         <scene sceneID="EVW-fg-s6r">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="1fL-UJ-uUQ" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="1fL-UJ-uUQ" customClass="ProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fLf-jA-p1U"/>
                         <viewControllerLayoutGuide type="bottom" id="7Zq-D3-Vkb"/>
@@ -350,7 +348,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v46-gQ-qI4" id="MOq-cN-Dee">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -372,7 +370,6 @@
                         <color key="backgroundColor" red="0.83921568627450982" green="0.80784313725490198" blue="0.76470588235294112" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="I2s-EA-ZDW" id="hyp-QC-Zct"/>
                         <outlet property="userTitle" destination="t7k-vj-6Jf" id="MNS-6C-7Gp"/>
                     </connections>
                 </viewController>
@@ -434,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Os-oJ-gby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759" y="1812"/>
+            <point key="canvasLocation" x="-759" y="2048"/>
         </scene>
         <!--My Books-->
         <scene sceneID="2SS-ng-mHW">
@@ -650,7 +647,6 @@
                         <outlet property="lattitude" destination="dpk-2a-4Ba" id="mII-3Q-RR9"/>
                         <outlet property="longitude" destination="aFc-2Q-Aky" id="viA-Tn-TWe"/>
                         <outlet property="signOutButton" destination="kUr-uk-dgN" id="CIr-Y1-bbS"/>
-                        <outlet property="title" destination="Aby-dP-J5W" id="a8o-GX-Edd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMT-eG-clP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,7 +656,7 @@
         <!--Add Map View Controller-->
         <scene sceneID="G9M-tO-9SB">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="eA2-Lb-NL4" customClass="AddMapViewController" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="eA2-Lb-NL4" customClass="AddMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5RC-HX-90K"/>
                         <viewControllerLayoutGuide type="bottom" id="o7D-Ov-Zpx"/>
@@ -687,7 +683,7 @@
         <!--My Books Detail View Controller-->
         <scene sceneID="J7s-ew-B24">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="YmS-qD-nT0" customClass="MyBooksDetailViewController" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="YmS-qD-nT0" customClass="MyBooksDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eJz-lS-fge"/>
                         <viewControllerLayoutGuide type="bottom" id="07l-da-Vr3"/>
@@ -890,13 +886,12 @@
                         <outlet property="bookSummary" destination="FKu-9t-MEQ" id="p3m-Uv-MTr"/>
                         <outlet property="bookTitle" destination="3BU-xy-e6S" id="cKv-tp-MIh"/>
                         <outlet property="bookUser" destination="EOd-Re-qpM" id="6qX-g1-YPX"/>
-                        <outlet property="bookUserButton" destination="LSU-Ln-o5a" id="9th-ob-Kzy"/>
                         <outlet property="navigationItem" destination="qMN-P9-MeS" id="njD-dK-CqS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWW-g3-zdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="466.41679160419795"/>
+            <point key="canvasLocation" x="86" y="289"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="dXq-ya-xts">
@@ -984,7 +979,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3X5-nq-RB3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1631" y="1813"/>
+            <point key="canvasLocation" x="-1674" y="2103"/>
         </scene>
     </scenes>
     <resources>
@@ -994,6 +989,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="yHE-EJ-h97"/>
         <segue reference="Lsx-c7-h7s"/>
-        <segue reference="r6C-zx-gDo"/>
+        <segue reference="5Rq-D0-nAm"/>
     </inferredMetricsTieBreakers>
 </document>
