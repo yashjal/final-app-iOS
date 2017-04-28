@@ -19,6 +19,7 @@
 		8CEC38FC1EA46A5C001C8442 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC38FB1EA46A5C001C8442 /* Place.m */; };
 		8CEC39001EA46E94001C8442 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CEC38FF1EA46E94001C8442 /* MapKit.framework */; };
 		CF350496FE9E79009A5D51D8 /* Pods_bookwormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE10D8E5B8837F7F429FCBC7 /* Pods_bookwormUITests.framework */; };
+		D5058FED1EB2C67E00F2AA9C /* userPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5058FEC1EB2C67E00F2AA9C /* userPostsViewController.m */; };
 		D50B0AC11E90627C00AE5C28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AC01E90627C00AE5C28 /* main.m */; };
 		D50B0AC41E90627C00AE5C28 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AC31E90627C00AE5C28 /* AppDelegate.m */; };
 		D50B0AC71E90627C00AE5C28 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AC61E90627C00AE5C28 /* ViewController.m */; };
@@ -77,6 +78,8 @@
 		8CEC38FF1EA46E94001C8442 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C66E86704754F62E8B70CF4A /* Pods-bookworm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookworm.release.xcconfig"; path = "Pods/Target Support Files/Pods-bookworm/Pods-bookworm.release.xcconfig"; sourceTree = "<group>"; };
 		C9BBB3D53A1720F03505E9AF /* Pods-bookwormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookwormTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bookwormTests/Pods-bookwormTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5058FEB1EB2C67D00F2AA9C /* userPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userPostsViewController.h; sourceTree = "<group>"; };
+		D5058FEC1EB2C67E00F2AA9C /* userPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userPostsViewController.m; sourceTree = "<group>"; };
 		D50B0ABC1E90627C00AE5C28 /* bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50B0AC01E90627C00AE5C28 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D50B0AC21E90627C00AE5C28 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				D50B0AF51E91407F00AE5C28 /* SignInViewController.m */,
 				D50B0AFD1E91722900AE5C28 /* emailSignInViewController.h */,
 				D50B0AFE1E91722900AE5C28 /* emailSignInViewController.m */,
+				D5058FEB1EB2C67D00F2AA9C /* userPostsViewController.h */,
+				D5058FEC1EB2C67E00F2AA9C /* userPostsViewController.m */,
 				D50B0ACB1E90627C00AE5C28 /* Assets.xcassets */,
 				D50B0ACD1E90627C00AE5C28 /* LaunchScreen.storyboard */,
 				D50B0AD01E90627C00AE5C28 /* Info.plist */,
@@ -550,6 +555,7 @@
 				D50B0AC71E90627C00AE5C28 /* ViewController.m in Sources */,
 				D50B0AC41E90627C00AE5C28 /* AppDelegate.m in Sources */,
 				D50B0AFF1E91722900AE5C28 /* emailSignInViewController.m in Sources */,
+				D5058FED1EB2C67E00F2AA9C /* userPostsViewController.m in Sources */,
 				D50B0AC11E90627C00AE5C28 /* main.m in Sources */,
 				8CEC38F31EA416AA001C8442 /* MyBooksTableViewController.m in Sources */,
 				D50B0B021E91819600AE5C28 /* registerViewController.m in Sources */,

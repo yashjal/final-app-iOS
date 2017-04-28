@@ -29,9 +29,7 @@
 }
 
 -(IBAction) emailPasswordSubmitted {
-    NSLog(@"1");
     if (self.emailField.text != Nil && self.passwordField.text != Nil) {
-         NSLog(@"2");
         [self checkEmailCredentialsInDB:self.emailField.text password:self.passwordField.text];
     }
 }
@@ -39,16 +37,11 @@
 -(void) checkEmailCredentialsInDB: (NSString*) email password: (NSString*) password {
     NSLog(@"3");
     [[self.ref child:@"users"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSLog(@"4");
         NSDictionary* dict = snapshot.value;
-        NSLog(@"5");
         NSArray* emails = [[dict allValues] valueForKey:@"email"];
-        NSLog(@"6");
         if ([emails containsObject:email]) {
-            NSLog(@"7");
              [self emailSignIn:email password:password];
         } else {
-            NSLog(@"8");
             NSLog(@"Error - Not in database");
             // Add Message Showing Not Signed In
             self.errorHidden.hidden = NO;
