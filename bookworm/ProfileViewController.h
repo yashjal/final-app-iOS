@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "AppDelegate.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>

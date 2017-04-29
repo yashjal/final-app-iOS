@@ -9,7 +9,7 @@
 #import "ProfileViewController.h"
 @import Firebase;
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <MFMailComposeViewControllerDelegate>
 
 @property NSArray *objects;
 @property NSMutableArray *books;
@@ -36,6 +36,20 @@
     
     
     if (self.userEmail && ![self.userEmail isEqualToString:@""] && ![self.userEmail isEqualToString:@"N/A"]) {
+        
+        [[[[self.ref child:@"users"] queryOrderedByChild:@"email"]
+          queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value != [NSNull null]){
+                //NSLog(@"snapshot = %@",snapshot.value);
+                NSDictionary *dict = snapshot.value;
+                NSArray *a = [dict allKeys];
+                if (a && [a count] != 0) {
+                    self.userTitle.text = [[dict objectForKey:a[0]] objectForKey:@"username"];
+                }
+                //NSLog(@"%@",[dict objectForKey:a[0]]);
+            }
+        }];
+        
         
         UITableView *tableView = (id)[self.view viewWithTag:1];
         
@@ -77,9 +91,49 @@
     cell.textLabel.text = s;
     return cell;
 }
+
 - (IBAction)backButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)contactUser:(id)sender {
+
+    NSString *emailTitle = @"Bookworm: User Interest";
+    NSString *messageBody = @"Hey, I'm really interested in your book...";
+    NSArray *toRecipents = [NSArray arrayWithObject:self.userEmail];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+     if([MFMailComposeViewController canSendMail]) {
+         [self presentViewController:mc animated:YES completion:NULL];
+     }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 @end

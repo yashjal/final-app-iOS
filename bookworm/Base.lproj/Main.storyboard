@@ -355,6 +355,9 @@
                                 <rect key="frame" x="142" y="553" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Contact User"/>
+                                <connections>
+                                    <action selector="contactUser:" destination="1fL-UJ-uUQ" eventType="touchUpInside" id="3oV-hQ-2xs"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7k-vj-6Jf">
                                 <rect key="frame" x="148" y="52" width="78" height="21"/>
