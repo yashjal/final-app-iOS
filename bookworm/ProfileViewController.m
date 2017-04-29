@@ -34,12 +34,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    UITableView *tableView = (id)[self.view viewWithTag:1];
     
     if (self.userEmail && ![self.userEmail isEqualToString:@""] && ![self.userEmail isEqualToString:@"N/A"]) {
+        
+        UITableView *tableView = (id)[self.view viewWithTag:1];
+        
         [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
           queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            
             if (snapshot.value != [NSNull null]){
                 //NSLog(@"snapshot = %@",snapshot.value);
                 NSDictionary *dict = snapshot.value;
@@ -63,7 +64,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
+    
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier];
+        
+    }
     
     NSString *s = self.books[indexPath.row];
     cell.textLabel.text = s;
