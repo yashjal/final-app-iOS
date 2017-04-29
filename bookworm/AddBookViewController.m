@@ -77,6 +77,8 @@
     NSError* configureError;
     if ([GIDSignIn sharedInstance].currentUser) {
         [[GIDSignIn sharedInstance] signOut];
+        //SignInViewController* signvc;
+    //    UIStoryboardSegue* segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"signout" source:self.view destination:emailSignInViewController];
         NSLog(@"Google Signed Out");
     } else {
         NSLog(@"Logged Out");

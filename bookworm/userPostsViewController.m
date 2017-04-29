@@ -28,33 +28,82 @@
     if (user) {
         [[_ref child:@"users"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             // Get user value
-            NSDictionary *postDict = snapshot.value;
+            NSDictionary *userDict = snapshot.value;
             NSString* idKey;
-            for (NSString* key in postDict) {
-                if ([postDict[key] containsObject:user.email]) {
+            NSMutableArray* allPosts = [[NSMutableArray alloc]init];
+            for (NSString* key in userDict) {
+                if ([userDict[key] containsObject:user.email]) {
                     idKey = key;
                 }
+                if ([userDict[key] objectForKey:@"posts"]) {
+                    NSDictionary* userPosts =[userDict[key] objectForKey:@"posts"];
+                    for (NSString* pk in userPosts) {
+                        NSString* message =[userPosts objectForKey:pk];
+                        NSString* time = pk;
+                        NSString* username = [userDict[key] objectForKey:@"username"];
+                        NSMutableDictionary* data = [[NSMutableDictionary alloc]init];
+                        [data setObject:username forKey:@"username"];
+                        [data setObject:message forKey:@"message"];
+                        [allPosts addObject:data];
+                    }
+                }
             }
-         //   NSLog(@"Hello 2");
-            self.usernameLabel.text = [NSString stringWithFormat:@"%@", [postDict[idKey] objectForKey:@"username"]];
+            NSLog(@"%lu", [allPosts count]);
+            [self handlePosts:allPosts];
+            
+            self.usernameLabel.text = [NSString stringWithFormat:@"%@", [userDict[idKey] objectForKey:@"username"]];
+            
+            
             // ...
         } withCancelBlock:^(NSError * _Nonnull error) {
             NSLog(@"%@", error.localizedDescription);
         }];
-        /*
-        [[[[self.ref child:@"posts"] queryOrderedByChild:@"time"]
-          queryEqualToValue:user.email] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            
-                if (snapshot.value != [NSNull null]){
-                    NSDictionary *dict = snapshot.value;
-                    //self.objects = [dict allKeys];
-                //    self.books = [NSMutableArray arrayWithArray:self.objects];
-                //    [self.tableView reloadData];
-            }
-        }];*/
     }
 
 }
+
+-(void) handlePosts:(NSMutableArray*) posts {
+     NSLog(@"Here");
+    UIScrollView* scrollView = self.scroll;
+    scrollView.bouncesZoom = YES;
+    scrollView.backgroundColor = [UIColor grayColor];
+    UIView* containerView = [[UIView alloc] initWithFrame:CGRectZero];
+    [scrollView addSubview:containerView];
+    CGFloat maximumWidth = 0.0;
+    CGFloat totalHeight = 0.0;
+     NSLog(@"Here 2");
+    for (int i = 0; i < [posts count]; i++) {
+        CGRect frame = CGRectMake(0, totalHeight, 100, 100);
+        UITextView* tview = [[UITextView alloc] initWithFrame:frame];
+        NSLog(@"Here 3");
+        tview.text = @"RANOD";
+        tview.textColor = [UIColor whiteColor];
+        tview.backgroundColor = [UIColor greenColor];
+        [containerView addSubview:tview];
+        
+        
+        // Increment our maximum width & total height
+        maximumWidth = MAX(maximumWidth, tview.contentSize.width);
+        totalHeight += tview.contentSize.height;
+    }
+    // Size the container view to fit. Use its size for the scroll view's content size as well.
+    containerView.frame = CGRectMake(0, 0, maximumWidth, totalHeight);
+    scrollView.contentSize = containerView.frame.size;
+    
+    // Minimum and maximum zoom scales
+    scrollView.minimumZoomScale = scrollView.frame.size.width / maximumWidth;
+    scrollView.maximumZoomScale = 4.0;
+    
+    
+    
+    
+    
+//    for (NSString* time in posts) {
+        
+ //   }
+}
+
+
 - (IBAction)signOutPressed:(id)sender {
     NSError *signOutError;
     BOOL status = [[FIRAuth auth] signOut:&signOutError];

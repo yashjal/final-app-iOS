@@ -11,6 +11,7 @@
 
 @interface userPostsViewController : ViewController
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UITextView *currentPostField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
