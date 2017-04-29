@@ -73,7 +73,15 @@
         NSLog(@"Error signing out: %@", signOutError);
         return;
     }
-    NSLog(@"Logged Out");
+    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    NSError* configureError;
+    if ([GIDSignIn sharedInstance].currentUser) {
+        [delegate signIn:[GIDSignIn sharedInstance] didDisconnectWithUser:[GIDSignIn sharedInstance].currentUser withError:configureError];
+        NSLog(@"Google Signed Out");
+    } else {
+        NSLog(@"Logged Out");
+    }
+    
 }
 
 - (void)mapViewController:(AddMapViewController *)addMap lattitude:(NSString *)latt longitude: (NSString *)longt {
