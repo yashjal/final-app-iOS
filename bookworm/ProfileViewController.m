@@ -37,6 +37,20 @@
     
     if (self.userEmail && ![self.userEmail isEqualToString:@""] && ![self.userEmail isEqualToString:@"N/A"]) {
         
+        [[[[self.ref child:@"users"] queryOrderedByChild:@"email"]
+          queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value != [NSNull null]){
+                //NSLog(@"snapshot = %@",snapshot.value);
+                NSDictionary *dict = snapshot.value;
+                NSArray *a = [dict allKeys];
+                if (a && [a count] != 0) {
+                    self.userTitle.text = [[dict objectForKey:a[0]] objectForKey:@"username"];
+                }
+                //NSLog(@"%@",[dict objectForKey:a[0]]);
+            }
+        }];
+        
+        
         UITableView *tableView = (id)[self.view viewWithTag:1];
         
         [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
