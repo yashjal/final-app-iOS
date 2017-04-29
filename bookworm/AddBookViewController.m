@@ -76,7 +76,7 @@
     AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
     NSError* configureError;
     if ([GIDSignIn sharedInstance].currentUser) {
-        [delegate signIn:[GIDSignIn sharedInstance] didDisconnectWithUser:[GIDSignIn sharedInstance].currentUser withError:configureError];
+        [[GIDSignIn sharedInstance] signOut];
         NSLog(@"Google Signed Out");
     } else {
         NSLog(@"Logged Out");
