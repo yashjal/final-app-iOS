@@ -365,8 +365,9 @@
                                     <action selector="contactUser:" destination="1fL-UJ-uUQ" eventType="touchUpInside" id="3oV-hQ-2xs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7k-vj-6Jf">
-                                <rect key="frame" x="0.0" y="44" width="375" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7k-vj-6Jf">
+                                <rect key="frame" x="0.0" y="44" width="375" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.96202833815917121" blue="0.80381649065360572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="23"/>
                                 <nil key="textColor"/>
@@ -374,10 +375,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="t7k-vj-6Jf" secondAttribute="trailing" id="CkA-xy-lfW"/>
-                            <constraint firstItem="t7k-vj-6Jf" firstAttribute="leading" secondItem="Txc-FN-UGS" secondAttribute="leading" id="akc-Hl-l21"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="userTitle" destination="t7k-vj-6Jf" id="MNS-6C-7Gp"/>
