@@ -92,7 +92,10 @@
     self.longitude.text = longt;
     
     //NSLog(@"Here");
-    NSLog(@"long: %@",longt);
+   // NSLog(@"long: %@",longt);
+}
+- (IBAction)backPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue

@@ -98,6 +98,8 @@
     
     NSString *s = self.books[indexPath.row];
     cell.textLabel.text = s;
+    cell.textLabel.font = [UIFont fontWithName:@"American Typewriter" size:18.0];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 

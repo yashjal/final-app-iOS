@@ -149,8 +149,10 @@
     NSArray *sectionBooks = [self.dictBooks objectForKey:sectionTitle];
     NSString *book = [sectionBooks objectAtIndex:indexPath.row];
     cell.textLabel.text = book;
-    cell.textLabel.textColor = [UIColor colorWithRed:100 green:150 blue:100 alpha:1];
+    cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.font = [UIFont fontWithName:@"American Typewriter" size:18.0];
     cell.textLabel.textAlignment  = NSTextAlignmentCenter;
+    
 
     
     //cell.imageView.image = [UIImage imageNamed:[self getImageFilename:animal]];
@@ -160,7 +162,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        return 80;
+        return 40;
 }
 
 @end

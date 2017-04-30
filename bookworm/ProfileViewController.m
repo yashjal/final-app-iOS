@@ -89,6 +89,9 @@
     
     NSString *s = self.books[indexPath.row];
     cell.textLabel.text = s;
+    cell.textLabel.font = [UIFont fontWithName:@"American Typewriter" size:18.0];
+    //cell.backgroundColor = [UIColor colorWithRed:255 green:251 blue:240 alpha:1];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
