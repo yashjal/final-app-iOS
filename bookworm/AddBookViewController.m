@@ -23,6 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
      self.ref = [[FIRDatabase database] reference];
+    
+    //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

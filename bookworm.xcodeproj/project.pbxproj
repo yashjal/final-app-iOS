@@ -336,6 +336,7 @@
 				TargetAttributes = {
 					D50B0ABB1E90627C00AE5C28 = {
 						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = V5C7FB369T;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -713,6 +714,7 @@
 			baseConfigurationReference = 37C2D4F8CE86F7DD2AB9AEE6 /* Pods-bookworm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V5C7FB369T;
 				INFOPLIST_FILE = bookworm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = class.bookworm;
@@ -725,6 +727,7 @@
 			baseConfigurationReference = C66E86704754F62E8B70CF4A /* Pods-bookworm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V5C7FB369T;
 				INFOPLIST_FILE = bookworm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = class.bookworm;
