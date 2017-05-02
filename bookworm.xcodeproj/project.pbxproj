@@ -13,6 +13,10 @@
 		8C8166F01EAF77120085C752 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8166EF1EAF77110085C752 /* ProfileViewController.m */; };
 		8C8166F31EAFC5E40085C752 /* AddMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8166F21EAFC5E40085C752 /* AddMapViewController.m */; };
 		8CC8BA7F1EB50B2F00AF812C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC8BA7E1EB50B2F00AF812C /* MessageUI.framework */; };
+		8CC8BA811EB7F9E500AF812C /* file-list-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC8BA801EB7F9E500AF812C /* file-list-7.png */; };
+		8CC8BA831EB7FA0500AF812C /* filing-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC8BA821EB7FA0500AF812C /* filing-7.png */; };
+		8CC8BA851EB7FA9100AF812C /* earth-usa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC8BA841EB7FA9100AF812C /* earth-usa.png */; };
+		8CC8BA871EB7FB1100AF812C /* book-simple-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC8BA861EB7FB1100AF812C /* book-simple-7.png */; };
 		8CEC38AE1EA2B843001C8442 /* BookListings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC38AD1EA2B843001C8442 /* BookListings.m */; };
 		8CEC38F31EA416AA001C8442 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC38F21EA416AA001C8442 /* MyBooksTableViewController.m */; };
 		8CEC38F61EA41714001C8442 /* MyBooksDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC38F51EA41714001C8442 /* MyBooksDetailViewController.m */; };
@@ -67,6 +71,10 @@
 		8C8166F11EAFC5E40085C752 /* AddMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMapViewController.h; sourceTree = "<group>"; };
 		8C8166F21EAFC5E40085C752 /* AddMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMapViewController.m; sourceTree = "<group>"; };
 		8CC8BA7E1EB50B2F00AF812C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		8CC8BA801EB7F9E500AF812C /* file-list-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-list-7.png"; sourceTree = "<group>"; };
+		8CC8BA821EB7FA0500AF812C /* filing-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filing-7.png"; sourceTree = "<group>"; };
+		8CC8BA841EB7FA9100AF812C /* earth-usa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "earth-usa.png"; sourceTree = "<group>"; };
+		8CC8BA861EB7FB1100AF812C /* book-simple-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-simple-7.png"; sourceTree = "<group>"; };
 		8CEC38AC1EA2B843001C8442 /* BookListings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListings.h; sourceTree = "<group>"; };
 		8CEC38AD1EA2B843001C8442 /* BookListings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListings.m; sourceTree = "<group>"; };
 		8CEC38F11EA416AA001C8442 /* MyBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBooksTableViewController.h; sourceTree = "<group>"; };
@@ -236,6 +244,10 @@
 			children = (
 				D5959A641EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg */,
 				D57C60641EA04E79004120AF /* paper-571937_1920.jpg */,
+				8CC8BA841EB7FA9100AF812C /* earth-usa.png */,
+				8CC8BA821EB7FA0500AF812C /* filing-7.png */,
+				8CC8BA861EB7FB1100AF812C /* book-simple-7.png */,
+				8CC8BA801EB7F9E500AF812C /* file-list-7.png */,
 				D57C60601EA03D04004120AF /* Bookworm Logo.png */,
 				D50B0AC01E90627C00AE5C28 /* main.m */,
 			);
@@ -384,10 +396,14 @@
 				D5959A651EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg in Resources */,
 				D57C60651EA04E79004120AF /* paper-571937_1920.jpg in Resources */,
 				D50B0ACF1E90627C00AE5C28 /* LaunchScreen.storyboard in Resources */,
+				8CC8BA831EB7FA0500AF812C /* filing-7.png in Resources */,
 				D50B0AF31E9063B800AE5C28 /* GoogleService-Info.plist in Resources */,
 				D50B0ACC1E90627C00AE5C28 /* Assets.xcassets in Resources */,
 				D50B0ACA1E90627C00AE5C28 /* Main.storyboard in Resources */,
 				D57C60611EA03D04004120AF /* Bookworm Logo.png in Resources */,
+				8CC8BA851EB7FA9100AF812C /* earth-usa.png in Resources */,
+				8CC8BA811EB7F9E500AF812C /* file-list-7.png in Resources */,
+				8CC8BA871EB7FB1100AF812C /* book-simple-7.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,14 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
+                                            name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
+                                            name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,7 +88,7 @@
     if ([GIDSignIn sharedInstance].currentUser) {
         [[GIDSignIn sharedInstance] signOut];
         //SignInViewController* signvc;
-    //    UIStoryboardSegue* segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"signout" source:self.view destination:emailSignInViewController];
+        //UIStoryboardSegue* segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"signout" source:self.view destination:emailSignInViewController];
         NSLog(@"Google Signed Out");
     } else {
         NSLog(@"Logged Out");
@@ -93,9 +101,8 @@
     self.lattitude.text = latt;
     self.longitude.text = longt;
     
-    //NSLog(@"Here");
-   // NSLog(@"long: %@",longt);
 }
+
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -107,6 +114,69 @@
         addMap.delegate = self;
     }
 }
+
+// keyboard help from: http://stackoverflow.com/questions/1126726/how-to-make-a-uitextfield-move-up-when-keyboard-is-present
+
+#define kOFFSET_FOR_KEYBOARD 100.0
+
+-(void)keyboardWillShow {
+    // Animate the current view out of the way
+    if (self.view.frame.origin.y >= 0) {
+        [self setViewMovedUp:YES];
+    }
+
+}
+
+-(void)keyboardWillHide {
+
+    if (self.view.frame.origin.y < 0) {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //move the main view, so that the keyboard does not hide it.
+    if  (self.view.frame.origin.y >= 0) {
+        [self setViewMovedUp:YES];
+    }
+
+}
+
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
 
 
 @end

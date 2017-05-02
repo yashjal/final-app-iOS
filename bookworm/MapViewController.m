@@ -107,7 +107,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         
         MKCoordinateRegion region;
         region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate,
-                                                    1500, 1500);
+                                                    10000, 10000);
         [self.mapView setRegion:region animated:YES];
     }
     
