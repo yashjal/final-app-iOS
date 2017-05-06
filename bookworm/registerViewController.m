@@ -28,7 +28,7 @@
 
 // Add description of error if registration is not good
 
-- (IBAction)register:(id)sender {
+- (IBAction)register:(id)sender { // Make sure all registration fields are filled
     if (self.regUsername.text != Nil && self.regEmail != Nil && self.regPwd != Nil) {
         [[FIRAuth auth] createUserWithEmail:self.regEmail.text
                                password:self.regPwd.text
@@ -42,13 +42,6 @@
                                  NSMutableDictionary* data = [[NSMutableDictionary alloc]init];
                                 [data setObject:self.regUsername.text forKey:@"username"];
                                 [data setObject:self.regEmail.text forKey:@"email"];
-                              //  [data setObject:sha forKey:@"password"];
-                                 [data setObject:@"N/A" forKey:@"address"];
-                                [data setObject:@"N/A" forKey:@"fav"];
-                                [data setObject:@"N/A" forKey:@"first_name"];
-                                [data setObject:@"N/A" forKey:@"last_name"];
-                                [data setObject:@"N/A" forKey:@"messages"];
-                                [data setObject:@"N/A" forKey:@"phone"];
                                  [[[_ref child:@"users"] childByAutoId] setValue:data];
                                  [self performSegueWithIdentifier:@"regToMain" sender:Nil];
                                  }

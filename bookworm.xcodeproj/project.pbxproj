@@ -28,7 +28,6 @@
 		D5058FED1EB2C67E00F2AA9C /* userPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5058FEC1EB2C67E00F2AA9C /* userPostsViewController.m */; };
 		D50B0AC11E90627C00AE5C28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AC01E90627C00AE5C28 /* main.m */; };
 		D50B0AC41E90627C00AE5C28 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AC31E90627C00AE5C28 /* AppDelegate.m */; };
-		D50B0AC71E90627C00AE5C28 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50B0AC61E90627C00AE5C28 /* ViewController.m */; };
 		D50B0ACA1E90627C00AE5C28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50B0AC81E90627C00AE5C28 /* Main.storyboard */; };
 		D50B0ACC1E90627C00AE5C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D50B0ACB1E90627C00AE5C28 /* Assets.xcassets */; };
 		D50B0ACF1E90627C00AE5C28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50B0ACD1E90627C00AE5C28 /* LaunchScreen.storyboard */; };
@@ -41,6 +40,7 @@
 		D57C60611EA03D04004120AF /* Bookworm Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D57C60601EA03D04004120AF /* Bookworm Logo.png */; };
 		D57C60651EA04E79004120AF /* paper-571937_1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D57C60641EA04E79004120AF /* paper-571937_1920.jpg */; };
 		D5959A651EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5959A641EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg */; };
+		D5E8CE8F1EBE6D8800E52E5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E8CE8E1EBE6D8800E52E5B /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +96,6 @@
 		D50B0AC01E90627C00AE5C28 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D50B0AC21E90627C00AE5C28 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D50B0AC31E90627C00AE5C28 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D50B0AC51E90627C00AE5C28 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D50B0AC61E90627C00AE5C28 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D50B0AC91E90627C00AE5C28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D50B0ACB1E90627C00AE5C28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D50B0ACE1E90627C00AE5C28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,6 +116,8 @@
 		D57C60601EA03D04004120AF /* Bookworm Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bookworm Logo.png"; sourceTree = "<group>"; };
 		D57C60641EA04E79004120AF /* paper-571937_1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "paper-571937_1920.jpg"; sourceTree = "<group>"; };
 		D5959A641EA57A8500457F04 /* old_paper_background_hd_picture_3_169573.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = old_paper_background_hd_picture_3_169573.jpg; sourceTree = "<group>"; };
+		D5E8CE8D1EBE6D7E00E52E5B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D5E8CE8E1EBE6D8800E52E5B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EA65C28C3F82173C5E82579E /* Pods-bookwormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookwormTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bookwormTests/Pods-bookwormTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED102E5986BE151C60045598 /* Pods-bookwormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookwormUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bookwormUITests/Pods-bookwormUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE10D8E5B8837F7F429FCBC7 /* Pods_bookwormUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bookwormUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,10 +205,10 @@
 			children = (
 				D50B0AC21E90627C00AE5C28 /* AppDelegate.h */,
 				D50B0AC31E90627C00AE5C28 /* AppDelegate.m */,
-				D50B0AC51E90627C00AE5C28 /* ViewController.h */,
+				D5E8CE8D1EBE6D7E00E52E5B /* ViewController.h */,
+				D5E8CE8E1EBE6D8800E52E5B /* ViewController.m */,
 				8CEC38AC1EA2B843001C8442 /* BookListings.h */,
 				8CEC38AD1EA2B843001C8442 /* BookListings.m */,
-				D50B0AC61E90627C00AE5C28 /* ViewController.m */,
 				D50B0AC81E90627C00AE5C28 /* Main.storyboard */,
 				8C8166F11EAFC5E40085C752 /* AddMapViewController.h */,
 				8C8166F21EAFC5E40085C752 /* AddMapViewController.m */,
@@ -577,9 +577,9 @@
 				8CEC38AE1EA2B843001C8442 /* BookListings.m in Sources */,
 				8C8166F01EAF77120085C752 /* ProfileViewController.m in Sources */,
 				8CEC38FC1EA46A5C001C8442 /* Place.m in Sources */,
-				D50B0AC71E90627C00AE5C28 /* ViewController.m in Sources */,
 				D50B0AC41E90627C00AE5C28 /* AppDelegate.m in Sources */,
 				D50B0AFF1E91722900AE5C28 /* emailSignInViewController.m in Sources */,
+				D5E8CE8F1EBE6D8800E52E5B /* ViewController.m in Sources */,
 				D5058FED1EB2C67E00F2AA9C /* userPostsViewController.m in Sources */,
 				D50B0AC11E90627C00AE5C28 /* main.m in Sources */,
 				8CEC38F31EA416AA001C8442 /* MyBooksTableViewController.m in Sources */,

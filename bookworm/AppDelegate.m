@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure]; // configure firebase before it can be used
-    self.dbRef = [[FIRDatabase database] reference];
+    self.dbRef = [[FIRDatabase database] reference]; // database reference
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID; // setup google signin id for user
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError: &configureError];
@@ -56,7 +56,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
      password:password
      completion:^(FIRUser *_Nullable user,
                   NSError *_Nullable error) {
-         // ...
+         if (error) {
+             NSLog(@"Erorr %@", error.localizedDescription);
+         }
      }];
 }
 
@@ -86,8 +88,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     // Perform any operations when the user disconnects from app here.
     // ...
 }
-
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

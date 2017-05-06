@@ -14,13 +14,14 @@
 
 @implementation SignInViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad { // Setup Google Signin
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addGradient];
     
     [GIDSignIn sharedInstance].uiDelegate = self;
     [[GIDSignIn sharedInstance] signInSilently];
+    // Use Firebase authentication if user signed in correctly with Google
     [[FIRAuth auth]
                    addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
                        if (user) {
@@ -35,8 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) addGradient {
-    //UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
+-(void) addGradient { // Add gradient to view, an orange/brown
     CAGradientLayer* gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.view.bounds;
     gradientLayer.colors = @[(id)[UIColor brownColor].CGColor, (id)[UIColor grayColor].CGColor];
