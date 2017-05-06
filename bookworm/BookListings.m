@@ -8,6 +8,7 @@
 
 #import "BookListings.h"
 #import "MyBooksDetailViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 @import Firebase;
 
 @interface BookListings ()
@@ -114,6 +115,11 @@
             }
         }];
         
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-01a" ofType:@"wav"];
+        
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
         
     }
 }

@@ -10,6 +10,7 @@
 		5C0476022DBED82F3F050D0E /* Pods_bookworm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508197038784BD148FA54584 /* Pods_bookworm.framework */; };
 		7E51660289EB1E62EC65731C /* Pods_bookwormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868E1501D9DB30B333FAD7FA /* Pods_bookwormTests.framework */; };
 		8C6861B21EBE6BBB003B553D /* default-book-cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C6861B11EBE6BBB003B553D /* default-book-cover.jpg */; };
+		8C6861B41EBE8F45003B553D /* page-flip-01a.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8C6861B31EBE8F45003B553D /* page-flip-01a.wav */; };
 		8C8166ED1EAD1C900085C752 /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8166EC1EAD1C900085C752 /* AddBookViewController.m */; };
 		8C8166F01EAF77120085C752 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8166EF1EAF77110085C752 /* ProfileViewController.m */; };
 		8C8166F31EAFC5E40085C752 /* AddMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8166F21EAFC5E40085C752 /* AddMapViewController.m */; };
@@ -66,6 +67,7 @@
 		868E1501D9DB30B333FAD7FA /* Pods_bookwormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bookwormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BEF1E4D9A7558E67CEDF05F /* Pods-bookwormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookwormUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bookwormUITests/Pods-bookwormUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C6861B11EBE6BBB003B553D /* default-book-cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-book-cover.jpg"; sourceTree = "<group>"; };
+		8C6861B31EBE8F45003B553D /* page-flip-01a.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "page-flip-01a.wav"; sourceTree = "<group>"; };
 		8C8166EB1EAD1C900085C752 /* AddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookViewController.h; sourceTree = "<group>"; };
 		8C8166EC1EAD1C900085C752 /* AddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
 		8C8166EE1EAF77110085C752 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				8CC8BA801EB7F9E500AF812C /* file-list-7.png */,
 				D57C60601EA03D04004120AF /* Bookworm Logo.png */,
 				8C6861B11EBE6BBB003B553D /* default-book-cover.jpg */,
+				8C6861B31EBE8F45003B553D /* page-flip-01a.wav */,
 				D50B0AC01E90627C00AE5C28 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -406,6 +409,7 @@
 				D50B0ACA1E90627C00AE5C28 /* Main.storyboard in Resources */,
 				D57C60611EA03D04004120AF /* Bookworm Logo.png in Resources */,
 				8CC8BA851EB7FA9100AF812C /* earth-usa.png in Resources */,
+				8C6861B41EBE8F45003B553D /* page-flip-01a.wav in Resources */,
 				8CC8BA811EB7F9E500AF812C /* file-list-7.png in Resources */,
 				8CC8BA871EB7FB1100AF812C /* book-simple-7.png in Resources */,
 			);
