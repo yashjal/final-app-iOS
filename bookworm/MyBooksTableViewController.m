@@ -122,12 +122,21 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         NSString *object = self.books[indexPath.row];
+        NSString *object1 = [NSString stringWithFormat:@"%@.jpg",object];
         [[[self.ref child:@"books"] child:object] setValue:nil withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             //NSLog(@"HERE");
             [self.books removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            
         }];
+        
+        [[self.storageRef child:object1] deleteWithCompletion:^(NSError *error){
+            if (error != nil) {
+                NSLog(@"No image");
+            } else {
+                NSLog(@"Image deleted successfully");
+            }
+        }];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
