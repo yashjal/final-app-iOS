@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 @property (weak, nonatomic) IBOutlet UILabel *bookCondition;
 @property (weak, nonatomic) IBOutlet UILabel *bookUser;
+@property (strong, nonatomic) IBOutlet UIImageView *bookImage;
 
 
 @end
@@ -55,7 +56,12 @@
         self.bookSummary.text = s;
         self.bookPublisher.text = publ;
         self.bookUser.text = u;
+        
     }
+}
+
+-(void)setImage:(UIImage *)image {
+    self.bookImage.image = image;
 }
 
 - (IBAction)backPressed:(id)sender {

@@ -21,22 +21,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-     self.ref = [[FIRDatabase database] reference];
+    
+    self.ref = [[FIRDatabase database] reference];
+    self.storageRef = [[FIRStorage storage] reference];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
                                             name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
                                             name:UIKeyboardWillHideNotification object:nil];
-
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,19 +66,41 @@
         [data setObject:self.Summary.text forKey:@"summary"];
         [data setObject:self.Publisher.text forKey:@"publ"];
         [data setObject:user.email forKey:@"user"];
+        
         if (self.lattitude.hasText && self.longitude.hasText) {
             [data setObject:self.lattitude.text forKey:@"lattitude"];
             [data setObject:self.longitude.text forKey:@"longitude"];
         }
     
+        
         [[[_ref child:@"books"] child:self.Title.text] setValue:data withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             if (error) {
                 NSLog(@"%@", error.localizedDescription);
             } else {
-                [self dismissViewControllerAnimated:YES completion:nil];
-                //NSLog(@"HERE");
+                
+                if (self.imageView.image) {
+                    NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.25);
+                    NSString *imagePath = [NSString stringWithFormat:@"%@.jpg",self.Title.text];
+                    
+                    FIRStorageMetadata *metadata = [FIRStorageMetadata new];
+                    metadata.contentType = @"image/jpeg";
+                
+                    [[self.storageRef child:imagePath] putData:imageData metadata:metadata completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+                        if (error) {
+                            NSLog(@"Error uploading: %@", error);
+                        }
+                        else {
+                            NSLog(@"Upload Succeeded!");
+                        }
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                        
+                    }];
+                }
+                
+                else {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
             }
-
             
         }];
         
@@ -117,7 +148,7 @@
 
 // keyboard help from: http://stackoverflow.com/questions/1126726/how-to-make-a-uitextfield-move-up-when-keyboard-is-present
 
-#define kOFFSET_FOR_KEYBOARD 100.0
+#define kOFFSET_FOR_KEYBOARD 40.0
 
 -(void)keyboardWillShow {
     // Animate the current view out of the way
@@ -177,6 +208,31 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (IBAction)takePhoto:(UIButton *)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    self.imageView.image = chosenImage;
+
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 @end

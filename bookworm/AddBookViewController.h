@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface AddBookViewController : UIViewController
+@interface AddBookViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *signOutButton;
 
@@ -21,6 +21,8 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (weak, nonatomic) IBOutlet UITextField *lattitude;
 @property (weak, nonatomic) IBOutlet UITextField *longitude;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 
 
 @end
