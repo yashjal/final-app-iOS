@@ -136,8 +136,8 @@
 -(void) handlePosts:(NSMutableArray*) posts {
     self.scroll.bouncesZoom = YES;
     self.scroll.backgroundColor = [UIColor whiteColor];
-    UIView* containerView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.scroll addSubview:containerView];
+    //UIView* containerView = [[UIView alloc] initWithFrame:CGRectZero];
+   // [self.scroll addSubview:containerView];
     CGFloat maximumWidth = 0.0;
     CGFloat totalHeight =  0.0;
     
@@ -152,7 +152,7 @@
         }
     }
     for (int i = 0; i < [posts count]; i++) {
-        CGRect frame = CGRectMake(0, totalHeight, 250, 200);
+        CGRect frame = CGRectMake(0, totalHeight, self.view.bounds.size.width, 200);
         // Create text view to add to container
         UITextView* tview = [[UITextView alloc] initWithFrame:frame];
         
@@ -178,9 +178,6 @@
         // Don't allow users to edit text
         tview.editable = NO;
         
-        // Add text view to container
-        [containerView addSubview:tview];
-        
         // Increment maximum width & total height
         maximumWidth = MAX(maximumWidth, tview.contentSize.width);
         totalHeight += tview.contentSize.height;
@@ -192,20 +189,23 @@
         lineShape.strokeColor = [[UIColor grayColor]CGColor];
         lineShape.lineWidth = 3.0;
         lineShape.fillColor = [[UIColor grayColor]CGColor];
-        [containerView.layer addSublayer: lineShape];
+
+        [self.scroll addSubview:tview];
+        [self.scroll.layer addSublayer: lineShape];
         
     }
     // Size the container view and update the scroll view size
-    containerView.frame = CGRectMake(0, 0, maximumWidth, totalHeight);
-    containerView.center = self.scroll.center;
-    self.scroll.contentSize = containerView.frame.size;
+    self.scroll.frame = CGRectMake(0, 0, maximumWidth, totalHeight);
+    self.
+   // self.scroll.center = self.view.center;
+    self.scroll.contentSize = self.scroll.frame.size;
     // Minimum and maximum zoom scales
     self.scroll.minimumZoomScale = self.scroll.frame.size.width / maximumWidth;
     self.scroll.maximumZoomScale = 4.0;
     
     
     // Clear message area
-    self.currentPostField.text = @"";
+    self.currentPostField.text = @"Your Message...";
 }
 
 

@@ -526,7 +526,7 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" keyboardAppearance="light"/>
                             </textView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kS-07-lhh">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" semanticContentAttribute="spatial" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="5kS-07-lhh">
                                 <rect key="frame" x="0.0" y="259" width="375" height="359"/>
                                 <color key="backgroundColor" red="0.99927884339999995" green="0.98507171869999999" blue="0.94061571359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </scrollView>
