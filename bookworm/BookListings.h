@@ -13,5 +13,6 @@
 @interface BookListings : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 
 @end

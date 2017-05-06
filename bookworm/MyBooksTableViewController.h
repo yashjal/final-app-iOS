@@ -13,6 +13,7 @@
 @interface MyBooksTableViewController : UITableViewController
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 
 
 @end

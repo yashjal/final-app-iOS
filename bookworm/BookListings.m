@@ -24,7 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.ref = [[FIRDatabase database] reference];    
+    self.ref = [[FIRDatabase database] reference];
+    self.storageRef = [[FIRStorage storage] reference];
     
     UITableView *tableView = (id)[self.view viewWithTag:1];
     
@@ -93,14 +94,24 @@
         NSString *sectionTitle = [self.bookSectionTitles objectAtIndex:indexPath.section];
         NSArray *sectionBooks = [self.dictBooks objectForKey:sectionTitle];
         NSString *book = [sectionBooks objectAtIndex:indexPath.row];
+        NSString *book1 = [NSString stringWithFormat:@"%@.jpg",book];
+
         
         [[[self.ref child:@"books"] child:book] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             //NSLog(@"snapshot = %@",snapshot.value);
             NSDictionary *dict = snapshot.value;
             MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
             [controller setBook:book author:[dict objectForKey:@"author"] publisher:[dict objectForKey:@"publ"] condition:[dict objectForKey:@"condition"] summary:[dict objectForKey:@"summary"] user:[dict objectForKey:@"user"]];
-
             
+        }];
+        
+        [[self.storageRef child:book1] dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+            MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
+            if (error != nil) {
+                [controller setImage:[UIImage imageNamed:@"default-book-cover.jpg"]];
+            } else {
+                [controller setImage:[UIImage imageWithData:data]];
+            }
         }];
         
         

@@ -15,4 +15,6 @@
 - (void)setBook:(NSString *)title author:(NSString *)auth publisher:(NSString *)publ
       condition:(NSString *)cond summary:(NSString *)s user:(NSString *)u;
 
+-(void)setImage:(UIImage *)image;
+
 @end

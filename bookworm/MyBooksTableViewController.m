@@ -23,9 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.ref = [[FIRDatabase database] reference];
+    self.storageRef = [[FIRStorage storage] reference];
 
 }
 
@@ -66,15 +67,22 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *object = self.books[indexPath.row];
-
+        NSString *object1 = [NSString stringWithFormat:@"%@.jpg",object];
         
         [[[self.ref child:@"books"] child:object] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             //NSLog(@"snapshot = %@",snapshot.value);
             NSDictionary *dict = snapshot.value;
             MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
             [controller setBook:object author:[dict objectForKey:@"author"] publisher:[dict objectForKey:@"publ"] condition:[dict objectForKey:@"condition"] summary:[dict objectForKey:@"summary"] user:[dict objectForKey:@"user"]];
-            
-            
+        }];
+        
+        [[self.storageRef child:object1] dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+            MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
+            if (error != nil) {
+                [controller setImage:[UIImage imageNamed:@"default-book-cover.jpg"]];
+            } else {
+                [controller setImage:[UIImage imageWithData:data]];
+            }
         }];
         
     }
