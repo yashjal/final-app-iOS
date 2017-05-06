@@ -19,7 +19,7 @@
     
     // Do any additional setup after loading the view.
      self.ref = [[FIRDatabase database] reference];
-    self.errorHidden.hidden = YES;
+    self.errorHidden.hidden = YES; // Hidden field for when user can't sign in
 }
 
 
@@ -35,11 +35,11 @@
 }
 
 -(void) checkEmailCredentialsInDB: (NSString*) email password: (NSString*) password {
-    NSLog(@"3");
     [[self.ref child:@"users"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary* dict = snapshot.value;
         NSArray* emails = [[dict allValues] valueForKey:@"email"];
         if ([emails containsObject:email]) {
+            // If user's email is found in database, continue with sign in
              [self emailSignIn:email password:password];
         } else {
             NSLog(@"Error - Not in database");
@@ -51,14 +51,12 @@
 
 
 -(void) emailSignIn: (NSString*) email password:(NSString*) password {
-    NSLog(@"6");
     [[FIRAuth auth] signInWithEmail:email
                            password:password
                          completion:^(FIRUser *user, NSError *error) {
                              if (error) {
                                  NSLog(@"%@",error.localizedDescription);
                              } else {
-                             NSLog(@"7 - Signed in ");
                              [self performSegueWithIdentifier:@"toMain" sender:Nil];
                              }
                          }];

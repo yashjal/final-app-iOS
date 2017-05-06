@@ -484,13 +484,10 @@
                                     <navigationItem title="Bookworm" id="C0G-Yq-dkV"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JO-3e-yag">
-                                <rect key="frame" x="0.0" y="46" width="375" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JO-3e-yag">
+                                <rect key="frame" x="0.0" y="43" width="375" height="41"/>
                                 <color key="backgroundColor" red="0.99927884339999995" green="0.98507171869999999" blue="0.94061571359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.63330262650000002" blue="0.099563167689999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="dCf-15-Gza"/>
-                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="User">
                                         <attributes>
@@ -512,15 +509,12 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLw-rZ-hOa">
-                                <rect key="frame" x="79" y="97" width="217" height="79"/>
+                                <rect key="frame" x="79" y="124" width="217" height="79"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
                                 <rect key="contentStretch" x="0.20000000000000001" y="0.20000000000000001" width="1" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="79" id="Trf-F5-5Qk"/>
-                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Post here...">
                                         <attributes>
@@ -531,8 +525,12 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" keyboardAppearance="light"/>
                             </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kS-07-lhh">
+                                <rect key="frame" x="0.0" y="259" width="375" height="359"/>
+                                <color key="backgroundColor" red="0.99927884339999995" green="0.98507171869999999" blue="0.94061571359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </scrollView>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wef-aO-vTd">
-                                <rect key="frame" x="304" y="97" width="71" height="83"/>
+                                <rect key="frame" x="304" y="147" width="71" height="33"/>
                                 <color key="backgroundColor" red="0.19838553667068481" green="0.8413512110710144" blue="0.82509714365005493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <size key="titleShadowOffset" width="5" height="8"/>
@@ -550,30 +548,29 @@
                                     <action selector="submitPost:" destination="4cs-0T-59M" eventType="touchUpInside" id="tiu-rt-dpE"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kS-07-lhh">
-                                <rect key="frame" x="0.0" y="246" width="375" height="372"/>
-                                <color key="backgroundColor" red="0.99927884339999995" green="0.98507171869999999" blue="0.94061571359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3JO-3e-yag" secondAttribute="trailing" id="0RH-ZF-PA2"/>
-                            <constraint firstItem="3JO-3e-yag" firstAttribute="top" secondItem="WT4-Qw-yMK" secondAttribute="bottom" constant="10" id="3ba-Fu-eBF"/>
-                            <constraint firstItem="5kS-07-lhh" firstAttribute="trailing" secondItem="WT4-Qw-yMK" secondAttribute="trailing" id="4ZE-2S-GCk"/>
-                            <constraint firstItem="RLw-rZ-hOa" firstAttribute="leading" secondItem="g1M-Qc-01m" secondAttribute="leadingMargin" constant="63" id="Eb7-YD-q7m"/>
-                            <constraint firstItem="RLw-rZ-hOa" firstAttribute="top" secondItem="3JO-3e-yag" secondAttribute="bottom" constant="8" symbolic="YES" id="Hep-ie-4WE"/>
-                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="RLw-rZ-hOa" secondAttribute="bottom" constant="70" id="MCI-sf-t8P"/>
-                            <constraint firstItem="Wef-aO-vTd" firstAttribute="leading" secondItem="RLw-rZ-hOa" secondAttribute="trailing" constant="8" symbolic="YES" id="b5k-rv-M3d"/>
-                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="Wef-aO-vTd" secondAttribute="bottom" constant="66" id="b9J-xX-AeI"/>
-                            <constraint firstItem="3JO-3e-yag" firstAttribute="centerX" secondItem="RLw-rZ-hOa" secondAttribute="centerX" id="baI-9B-Cde"/>
-                            <constraint firstItem="3JO-3e-yag" firstAttribute="leading" secondItem="g1M-Qc-01m" secondAttribute="leading" id="cYz-RH-Jnl"/>
-                            <constraint firstItem="3JO-3e-yag" firstAttribute="trailing" secondItem="Wef-aO-vTd" secondAttribute="trailing" id="eGp-Ts-V2p"/>
-                            <constraint firstItem="5kS-07-lhh" firstAttribute="bottom" secondItem="sSg-Dh-ZEl" secondAttribute="top" id="hJ5-ie-JjO"/>
-                            <constraint firstItem="Wef-aO-vTd" firstAttribute="top" secondItem="RLw-rZ-hOa" secondAttribute="top" id="igq-hU-xwK"/>
-                            <constraint firstItem="3JO-3e-yag" firstAttribute="leading" secondItem="WT4-Qw-yMK" secondAttribute="leading" id="kpU-p9-gsq"/>
-                            <constraint firstItem="3JO-3e-yag" firstAttribute="trailing" secondItem="WT4-Qw-yMK" secondAttribute="trailing" id="mQo-0M-WMK"/>
-                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="g1M-Qc-01m" secondAttribute="top" constant="246" id="uXh-6K-gxh"/>
-                            <constraint firstItem="5kS-07-lhh" firstAttribute="leading" secondItem="WT4-Qw-yMK" secondAttribute="leading" id="vhw-lA-fQ8"/>
+                            <constraint firstAttribute="trailing" secondItem="3JO-3e-yag" secondAttribute="trailing" id="5Wl-hd-are"/>
+                            <constraint firstItem="RLw-rZ-hOa" firstAttribute="leading" secondItem="g1M-Qc-01m" secondAttribute="leadingMargin" constant="63" id="AJJ-2a-5Op"/>
+                            <constraint firstAttribute="bottom" secondItem="5kS-07-lhh" secondAttribute="bottom" id="Byn-ZB-6pU"/>
+                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="3JO-3e-yag" secondAttribute="bottom" constant="175" id="CSD-gg-Zif"/>
+                            <constraint firstAttribute="trailing" secondItem="Wef-aO-vTd" secondAttribute="trailing" id="HwR-oY-zbh"/>
+                            <constraint firstItem="Wef-aO-vTd" firstAttribute="leading" secondItem="RLw-rZ-hOa" secondAttribute="trailing" constant="8" id="L2M-A6-JRR"/>
+                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="Wef-aO-vTd" secondAttribute="bottom" constant="79" id="Re7-qB-xvq"/>
+                            <constraint firstAttribute="trailing" secondItem="WT4-Qw-yMK" secondAttribute="trailing" id="SWl-8G-4a5"/>
+                            <constraint firstItem="3JO-3e-yag" firstAttribute="leading" secondItem="g1M-Qc-01m" secondAttribute="leading" id="Wn8-M0-7nF"/>
+                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="g1M-Qc-01m" secondAttribute="top" constant="259" id="Xyg-X4-Eyc"/>
+                            <constraint firstItem="Wef-aO-vTd" firstAttribute="top" secondItem="g1M-Qc-01m" secondAttribute="top" constant="147" id="YGJ-w3-6HA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RLw-rZ-hOa" secondAttribute="trailing" constant="63" id="ZMw-sW-W06"/>
+                            <constraint firstItem="WT4-Qw-yMK" firstAttribute="top" secondItem="g1M-Qc-01m" secondAttribute="top" id="aKa-m5-JzV"/>
+                            <constraint firstItem="5kS-07-lhh" firstAttribute="leading" secondItem="g1M-Qc-01m" secondAttribute="leading" id="c4b-yt-o0Y"/>
+                            <constraint firstItem="RLw-rZ-hOa" firstAttribute="top" secondItem="G8T-hV-VsV" secondAttribute="bottom" constant="104" id="h3z-Na-fwy"/>
+                            <constraint firstAttribute="trailing" secondItem="5kS-07-lhh" secondAttribute="trailing" id="hYH-1T-Faa"/>
+                            <constraint firstItem="3JO-3e-yag" firstAttribute="top" secondItem="G8T-hV-VsV" secondAttribute="bottom" constant="23" id="igH-9w-Jx5"/>
+                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="WT4-Qw-yMK" secondAttribute="bottom" constant="215" id="lXz-EG-s3M"/>
+                            <constraint firstItem="WT4-Qw-yMK" firstAttribute="leading" secondItem="g1M-Qc-01m" secondAttribute="leading" id="mZ1-r3-G29"/>
+                            <constraint firstItem="5kS-07-lhh" firstAttribute="top" secondItem="RLw-rZ-hOa" secondAttribute="bottom" constant="56" id="oUx-Xc-Ouu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Posts" image="file-list-7.png" id="VhK-VH-t3a"/>
@@ -587,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Os-oJ-gby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759" y="1881"/>
+            <point key="canvasLocation" x="-759.20000000000005" y="1880.5097451274364"/>
         </scene>
         <!--My Books-->
         <scene sceneID="2SS-ng-mHW">
