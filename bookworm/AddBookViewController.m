@@ -26,6 +26,7 @@
     self.ref = [[FIRDatabase database] reference];
     self.storageRef = [[FIRStorage storage] reference];
     
+    //touching outside textfield removes keyboard
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 
 }
@@ -33,12 +34,13 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    //adjust frame of view controller when user hits a text field
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
-                                            name:UIKeyboardWillShowNotification object:nil];
-    
+        name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
-                                            name:UIKeyboardWillHideNotification object:nil];
+        name:UIKeyboardWillHideNotification object:nil];
     
+    //check if camera available on device
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -54,9 +56,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)addBook:(id)sender {
+    //add book
     if (self.Title.text != Nil && self.Author.text != Nil && self.Condition.text != Nil && self.Summary.text != Nil && self.Publisher.text != Nil && [FIRAuth auth].currentUser) {
         
-        //NSMutableDictionary* dt = [[NSMutableDictionary alloc]init];
         FIRUser *user = [FIRAuth auth].currentUser;
         
         NSMutableDictionary* data = [[NSMutableDictionary alloc] init];
@@ -79,6 +81,7 @@
                 NSLog(@"%@", error.localizedDescription);
             } else {
                 
+                //add image
                 if (self.imageView.image) {
                     NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.25);
                     NSString *imagePath = [NSString stringWithFormat:@"%@.jpg",self.Title.text];
@@ -94,8 +97,6 @@
                             NSLog(@"Upload Succeeded!");
                         }
                         [self dismissViewControllerAnimated:YES completion:nil];
-
-                        
                     }];
                 }
                 
@@ -106,8 +107,8 @@
             
         }];
         
+        //sound
         NSString *path = [ [NSBundle mainBundle] pathForResource:@"shuffling-cards-4" ofType:@"wav"];
-        
         SystemSoundID theSound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
         AudioServicesPlaySystemSound (theSound);
@@ -132,8 +133,9 @@
     } else {
         NSLog(@"Logged Out");
     }
-    NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
     
+    //sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
@@ -141,6 +143,7 @@
 }
 
 - (void)mapViewController:(AddMapViewController *)addMap lattitude:(NSString *)latt longitude: (NSString *)longt {
+    //since this is a delegate of addMapViewController, we get the map's location
     [addMap dismissViewControllerAnimated:YES completion:nil];
     self.lattitude.text = latt;
     self.longitude.text = longt;
@@ -149,10 +152,16 @@
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-rip-3" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue
-                 sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     if ([[segue identifier] isEqualToString:@"showMap"]) {
         AddMapViewController *addMap = segue.destinationViewController;
         addMap.delegate = self;
@@ -172,7 +181,7 @@
 }
 
 -(void)keyboardWillHide {
-
+    //return to normal frame
     if (self.view.frame.origin.y < 0) {
         [self setViewMovedUp:NO];
     }
@@ -187,8 +196,7 @@
 
 }
 
--(void)setViewMovedUp:(BOOL)movedUp
-{
+-(void)setViewMovedUp:(BOOL)movedUp {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
     

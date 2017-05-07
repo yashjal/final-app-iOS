@@ -28,13 +28,14 @@
     self.ref = [[FIRDatabase database] reference];
     self.storageRef = [[FIRStorage storage] reference];
     
+    //edit table view
     UITableView *tableView = (id)[self.view viewWithTag:1];
     UIEdgeInsets contentInset = tableView.contentInset;
     contentInset.top = 20;
     [tableView setContentInset: contentInset];
     
+    //sound
     NSString *path = [ [NSBundle mainBundle] pathForResource:@"shuffling-cards-4" ofType:@"wav"];
-    
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
@@ -51,20 +52,25 @@
     
     UITableView *tableView = (id)[self.view viewWithTag:1];
     
+    //read all "books" in database
     [[self.ref child:@"books"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        //NSLog(@"snapshot = %@",snapshot.value);
         NSDictionary *dict = snapshot.value;
+        
+        //all book names
         self.books = [dict allKeys];
-        //NSArray *x = [dict allKeys];
+        
+        //key=alphabet, value=book name
         self.dictBooks = [self sectionSetup:self.books];
-        
         self.bookSectionTitles = [[self.dictBooks allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-        
         
         [tableView reloadData];
     }];
 }
 
+/*
+Takes all the book titles and creates a dictionary with
+key=alphabet; value=book title starting with that alphabet
+*/
 -(NSMutableDictionary *)sectionSetup:(NSArray *)bookTitles {
     
     NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
@@ -99,8 +105,8 @@
         NSArray *sectionBooks = [self.dictBooks objectForKey:sectionTitle];
         NSString *book = [sectionBooks objectAtIndex:indexPath.row];
         NSString *book1 = [NSString stringWithFormat:@"%@.jpg",book];
-
         
+        //set the details of the book of the selected row
         [[[self.ref child:@"books"] child:book] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             //NSLog(@"snapshot = %@",snapshot.value);
             NSDictionary *dict = snapshot.value;
@@ -109,6 +115,7 @@
             
         }];
         
+        //set the image of the book of the selected row
         [[self.storageRef child:book1] dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData *data, NSError *error){
             MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
             if (error != nil) {
@@ -118,8 +125,8 @@
             }
         }];
         
+        //sound
         NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-01a" ofType:@"wav"];
-        
         SystemSoundID theSound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
         AudioServicesPlaySystemSound (theSound);
@@ -172,8 +179,6 @@
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.font = [UIFont fontWithName:@"American Typewriter" size:18.0];
     cell.textLabel.textAlignment  = NSTextAlignmentCenter;
-    
-
     
     //cell.imageView.image = [UIImage imageNamed:[self getImageFilename:animal]];
     

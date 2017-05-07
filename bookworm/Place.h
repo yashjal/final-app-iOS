@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+//represents an annotation in the map
 @interface Place : NSObject <MKAnnotation>
 
 @property (copy, nonatomic) NSString *title;

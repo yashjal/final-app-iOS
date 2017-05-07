@@ -45,7 +45,7 @@
 
 #pragma mark - Managing the detail item
 
-
+//the segue in the prev. view controller sets all the info of the book selected
 - (void)setBook:(NSString *)title author:(NSString *)auth publisher:(NSString *)publ
       condition:(NSString *)cond summary:(NSString *)s user:(NSString *)u{
     
@@ -61,14 +61,16 @@
     }
 }
 
+//the segue in the prev. view controller sets the image of the book selected
 -(void)setImage:(UIImage *)image {
     self.bookImage.image = image;
 }
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-02" ofType:@"wav"];
     
+    //sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-02" ofType:@"wav"];
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
@@ -76,11 +78,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    //set emailId of the user who owns this book
     ProfileViewController *controller = (ProfileViewController *)[segue destinationViewController];
     controller.userEmail = self.bookUser.text;
     
+    //sound
     NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-01a" ofType:@"wav"];
-    
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);

@@ -30,8 +30,8 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager requestWhenInUseAuthorization];
     
+    //sound
     NSString *path = [ [NSBundle mainBundle] pathForResource:@"shuffling-cards-4" ofType:@"wav"];
-    
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
@@ -46,12 +46,12 @@
     [super viewWillAppear:animated];
     self.ref = [[FIRDatabase database] reference];
     
+    //read all the "books" from database
     [[self.ref child:@"books"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        //NSLog(@"snapshot = %@",snapshot.value);
         NSDictionary *dict = snapshot.value;
         NSArray *keys = [dict allKeys];
-        //NSMutableArray *pl = [[NSMutableArray alloc] init];
         
+        //add locations of each book to map as an annotation
         for (NSString *key in keys) {
             NSDictionary *object = [dict objectForKey: key];
             if (object[@"lattitude"] && object[@"longitude"] && ![object[@"longitude"] isEqualToString:@""] && ![object[@"lattitude"] isEqualToString:@""]) {
@@ -68,16 +68,13 @@
                     } else {
                         p.subtitle = object[@"author"];
                     }
-                    //[pl addObject:p];
+
                     [self.mapView addAnnotation:p];
                 }
             }
         }
         
-        //self.places = [pl copy];
-        
     }];
-
     
 }
 
@@ -105,16 +102,9 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     CLLocation *newLocation = [locations lastObject];
     
     if (self.previousPoint == nil) {
-
-//        Place *start = [[Place alloc] init];
-//        start.coordinate = newLocation.coordinate;
-//        start.title = @"Start Point";
-//        start.subtitle = @"This is where we started!";
-//        [self.mapView addAnnotation:start];
         
         MKCoordinateRegion region;
-        region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate,
-                                                    10000, 10000);
+        region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 10000, 10000);
         [self.mapView setRegion:region animated:YES];
     }
     

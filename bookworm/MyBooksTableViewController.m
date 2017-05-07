@@ -24,13 +24,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
     self.ref = [[FIRDatabase database] reference];
     self.storageRef = [[FIRStorage storage] reference];
 
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -38,11 +38,11 @@
     FIRUser *user = [FIRAuth auth].currentUser;
     
     if (user) {
+        //read all the books owned by this current logged in user
         [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
           queryEqualToValue:user.email] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
             if (snapshot.value != [NSNull null]){
-                //NSLog(@"snapshot = %@",snapshot.value);
                 NSDictionary *dict = snapshot.value;
                 self.objects = [dict allKeys];
                 self.books = [NSMutableArray arrayWithArray:self.objects];
@@ -70,13 +70,14 @@
         NSString *object = self.books[indexPath.row];
         NSString *object1 = [NSString stringWithFormat:@"%@.jpg",object];
         
+        //set the details of the book of the selected row
         [[[self.ref child:@"books"] child:object] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            //NSLog(@"snapshot = %@",snapshot.value);
             NSDictionary *dict = snapshot.value;
             MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
             [controller setBook:object author:[dict objectForKey:@"author"] publisher:[dict objectForKey:@"publ"] condition:[dict objectForKey:@"condition"] summary:[dict objectForKey:@"summary"] user:[dict objectForKey:@"user"]];
         }];
         
+        //set the image of the book of the selected row
         [[self.storageRef child:object1] dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData *data, NSError *error){
             MyBooksDetailViewController *controller = (MyBooksDetailViewController *)[segue destinationViewController];
             if (error != nil) {
@@ -86,8 +87,8 @@
             }
         }];
         
+        //sound
         NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-01a" ofType:@"wav"];
-        
         SystemSoundID theSound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
         AudioServicesPlaySystemSound (theSound);
@@ -127,15 +128,16 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
         NSString *object = self.books[indexPath.row];
         NSString *object1 = [NSString stringWithFormat:@"%@.jpg",object];
+        
+        //delete selected book from database
         [[[self.ref child:@"books"] child:object] setValue:nil withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-            //NSLog(@"HERE");
             [self.books removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }];
         
+        //delete corresponding image from storage
         [[self.storageRef child:object1] deleteWithCompletion:^(NSError *error){
             if (error != nil) {
                 NSLog(@"No image");
@@ -143,8 +145,9 @@
                 NSLog(@"Image deleted successfully");
             }
         }];
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
         
+        //sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
         SystemSoundID theSound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
         AudioServicesPlaySystemSound (theSound);

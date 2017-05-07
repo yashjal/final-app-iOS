@@ -15,5 +15,4 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (copy, nonatomic ) NSString *userEmail;
 
-
 @end

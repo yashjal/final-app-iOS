@@ -20,6 +20,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     
+    //long press=add location
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
@@ -39,8 +40,7 @@
     [super viewWillAppear:animated];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     NSLog(@"Authorization status changed to %d", status);
     switch (status) {
         case kCLAuthorizationStatusAuthorizedAlways:
@@ -57,8 +57,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     
     CLLocation *newLocation = [locations lastObject];
     
@@ -74,8 +73,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
     NSString *errorType = error.code == kCLErrorDenied ? @"Access Denied"
     : [NSString stringWithFormat:@"Error %ld", (long)error.code, nil];
     UIAlertController *alertController =
@@ -102,7 +101,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
     annot.coordinate = touchMapCoordinate;
     [self.mapAdd addAnnotation:annot];
-    NSLog(@"%f",annot.coordinate.latitude);
+    
+    //send info of the annotated lattitude,longitude to prev. view controller/delegate
     NSString *s = [NSString stringWithFormat:@"%f", annot.coordinate.latitude];
     NSString *t = [NSString stringWithFormat:@"%f", annot.coordinate.longitude];
     [self.delegate mapViewController:self lattitude:s longitude:t];

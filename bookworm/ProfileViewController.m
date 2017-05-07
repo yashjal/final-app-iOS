@@ -38,10 +38,11 @@
     
     if (self.userEmail && ![self.userEmail isEqualToString:@""] && ![self.userEmail isEqualToString:@"N/A"]) {
         
+        //get+set the username of this specific user (which we know via self.userEmai)
+        //self.userEmail is set in the segue of the prev. view controller
         [[[[self.ref child:@"users"] queryOrderedByChild:@"email"]
           queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value != [NSNull null]){
-
                 NSDictionary *dict = snapshot.value;
                 NSArray *a = [dict allKeys];
                 if (a && [a count] != 0) {
@@ -51,18 +52,16 @@
             }
         }];
         
-        
         UITableView *tableView = (id)[self.view viewWithTag:1];
         
+        //read in all the books owned by this specific user
         [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
           queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value != [NSNull null]){
-
                 NSDictionary *dict = snapshot.value;
                 self.objects = [dict allKeys];
                 self.books = [NSMutableArray arrayWithArray:self.objects];
                 [tableView reloadData];
-                
             }
         }];
     }
@@ -99,6 +98,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-02" ofType:@"wav"];
     
+    //sound
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
