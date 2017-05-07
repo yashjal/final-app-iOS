@@ -11,7 +11,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface userPostsViewController ()
-
+@property CGFloat heightTotal;
+@property CGFloat widthTotal;
 @end
 
 @implementation userPostsViewController
@@ -19,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self updateView];
 }
 - (IBAction)submitPost:(id)sender {
     self.ref = [[FIRDatabase database] reference];
@@ -59,24 +61,82 @@
             
             // Within the database, set the updated snapshot
             [[[_ref child:@"users"] child:userID] setValue:currUserDict[userID]];
+            
+            // Delay to allow database to update before attempting to retrieve again
+
         } withCancelBlock:^(NSError * _Nonnull error) {
             NSLog(@"%@", error.localizedDescription);
         }];
-        
-        // Delay to allow database to update before attempting to retrieve again
         dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 1);
         
         [self alertUser:@"User Post" message:@"Message Submitted!"];
         
         dispatch_after(delay, dispatch_get_main_queue(), ^(void) {
-             [self viewWillAppear:NO]; // Refresh view after user posts
+            [self newPost:self.usernameLabel.text message:self.currentPostField.text]; // Refresh view after user posts
         });
+
     }
     
 }
 
+-(void) newPost:(NSString*) username message:(NSString*) post{
+    CGFloat total_height = self.heightTotal;
+    CGFloat max_width = self.widthTotal;
+    CGRect new_frame = CGRectMake(0, 0, max_width, 200);
+ //   CGRect frame = CGRectMake(0, totalHeight, self.widthTotal, 200);
+    // Create text view to add to container
+    UITextView* text_view = [[UITextView alloc] initWithFrame:new_frame];
+    
+    // Handle formatting of text - username and message
+    NSString* text = [NSString stringWithFormat:@"%@ \n \n %@ \n\n",username,post];
+    NSMutableParagraphStyle* ppStyle = [[NSMutableParagraphStyle alloc]init];
+    ppStyle.alignment = NSTextAlignmentCenter;
+    UIFont* ppFont = [UIFont fontWithName:@"Helvetica-Light" size:18];
+    ppStyle.lineSpacing = 10;
+    UIColor* ppColor = [UIColor blackColor];
+    NSShadow* ppShadow = [[NSShadow alloc]init];
+    [ppShadow setShadowColor:[UIColor colorWithRed:50.0/255.0 green:50.0/255.0 blue:50.0/255.0 alpha:0.5]];
+    [ppShadow setShadowOffset:CGSizeMake(1.0, 1.0)];
+    [ppShadow setShadowBlurRadius:1.5];
+    
+    // Create attributed text string
+    NSAttributedString *postText = [[NSAttributedString alloc]initWithString:text attributes:@{NSParagraphStyleAttributeName:ppStyle, NSKernAttributeName:@2.0, NSFontAttributeName:ppFont, NSForegroundColorAttributeName:ppColor, NSShadowAttributeName:ppShadow}];
+    
+    text_view.attributedText = postText;
+    text_view.backgroundColor = [UIColor colorWithRed:255 green:251 blue:241 alpha:1];
+    text_view.showsVerticalScrollIndicator = YES;
+    
+    // Don't allow users to edit text
+    text_view.editable = NO;
+    text_view.translatesAutoresizingMaskIntoConstraints = NO;
+    // Increment maximum width & total height
+    max_width = MAX(max_width,text_view.contentSize.width);
+    total_height += text_view.contentSize.height;
+    
+    
+    [self addToScrollView:text_view];
+    // Size the container view and update the scroll view size
+    self.scroll.frame = CGRectMake(0, 0, max_width, total_height);
+    self.scroll.contentSize = self.scroll.frame.size;
+    // Clear message area
+    self.currentPostField.text = @"Your Message...";
 
--(void) viewWillAppear:(BOOL)animated {
+
+}
+
+// On new post, push previous views down
+-(void) addToScrollView:(UITextView*) text_view {
+    for (UIView *view in self.scroll.subviews) {
+        CGFloat height = view.frame.size.height;
+        view.frame = CGRectOffset(view.frame, 0.0, height);
+    }
+    [self.scroll addSubview:text_view];
+    CGPoint offset = self.scroll.contentOffset;
+    self.scroll.contentOffset = CGPointMake(offset.x, offset.y + text_view.frame.size.height);
+    
+}
+
+-(void) updateView {
     self.ref = [[FIRDatabase database] reference];
     FIRUser *user = [FIRAuth auth].currentUser;
     if (user) {
@@ -131,7 +191,6 @@
             NSLog(@"%@", error.localizedDescription);
         }];
     }
-
 }
 
 -(void) handlePosts:(NSMutableArray*) posts {
@@ -182,22 +241,12 @@
         // Increment maximum width & total height
         maximumWidth = MAX(maximumWidth, tview.contentSize.width);
         totalHeight += tview.contentSize.height;
-        UIBezierPath* linePath = [UIBezierPath bezierPath];
-        [linePath moveToPoint:CGPointMake(0, totalHeight)];
-        [linePath addLineToPoint:CGPointMake(maximumWidth, totalHeight)];
-        CAShapeLayer* lineShape = [CAShapeLayer layer];
-        lineShape.path = [linePath CGPath];
-        lineShape.strokeColor = [[UIColor grayColor]CGColor];
-        lineShape.lineWidth = 3.0;
-        lineShape.fillColor = [[UIColor grayColor]CGColor];
-
         [self.scroll addSubview:tview];
-        [self.scroll.layer addSublayer: lineShape];
         
     }
     // Size the container view and update the scroll view size
     self.scroll.frame = CGRectMake(0, 0, maximumWidth, totalHeight);
-    self.
+  
    // self.scroll.center = self.view.center;
     self.scroll.contentSize = self.scroll.frame.size;
     // Minimum and maximum zoom scales
@@ -207,6 +256,8 @@
     
     // Clear message area
     self.currentPostField.text = @"Your Message...";
+    self.heightTotal = totalHeight;
+    self.widthTotal = maximumWidth;
 }
 
 
