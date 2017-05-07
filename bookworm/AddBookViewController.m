@@ -152,12 +152,6 @@
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    //sound
-    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-rip-3" ofType:@"wav"];
-    SystemSoundID theSound;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-    AudioServicesPlaySystemSound (theSound);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
