@@ -8,6 +8,7 @@
 
 #import "AddBookViewController.h"
 #import "AddMapViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 @import Firebase;
 
 
@@ -93,6 +94,7 @@
                             NSLog(@"Upload Succeeded!");
                         }
                         [self dismissViewControllerAnimated:YES completion:nil];
+
                         
                     }];
                 }
@@ -103,6 +105,12 @@
             }
             
         }];
+        
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"shuffling-cards-4" ofType:@"wav"];
+        
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
         
     }
 }
@@ -124,6 +132,11 @@
     } else {
         NSLog(@"Logged Out");
     }
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
     
 }
 

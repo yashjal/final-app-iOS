@@ -29,12 +29,15 @@
     self.storageRef = [[FIRStorage storage] reference];
     
     UITableView *tableView = (id)[self.view viewWithTag:1];
-    
     UIEdgeInsets contentInset = tableView.contentInset;
-    
     contentInset.top = 20;
-    
     [tableView setContentInset: contentInset];
+    
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"shuffling-cards-4" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 
 }
 

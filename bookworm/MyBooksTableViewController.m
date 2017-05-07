@@ -8,6 +8,7 @@
 
 #import "MyBooksTableViewController.h"
 #import "MyBooksDetailViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 @import Firebase;
 
 
@@ -85,6 +86,12 @@
             }
         }];
         
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-01a" ofType:@"wav"];
+        
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
+        
     }
 }
 
@@ -136,6 +143,11 @@
                 NSLog(@"Image deleted successfully");
             }
         }];
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
+        
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

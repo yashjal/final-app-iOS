@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "Place.h"
 @import Firebase;
 
@@ -28,6 +29,12 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager requestWhenInUseAuthorization];
+    
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"shuffling-cards-4" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 }
 
 - (void)didReceiveMemoryWarning {

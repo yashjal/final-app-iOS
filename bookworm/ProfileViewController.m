@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 @import Firebase;
 
 @interface ProfileViewController () <MFMailComposeViewControllerDelegate>
@@ -40,13 +41,13 @@
         [[[[self.ref child:@"users"] queryOrderedByChild:@"email"]
           queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value != [NSNull null]){
-                //NSLog(@"snapshot = %@",snapshot.value);
+
                 NSDictionary *dict = snapshot.value;
                 NSArray *a = [dict allKeys];
                 if (a && [a count] != 0) {
                     self.userTitle.text = [[dict objectForKey:a[0]] objectForKey:@"username"];
                 }
-                //NSLog(@"%@",[dict objectForKey:a[0]]);
+
             }
         }];
         
@@ -56,7 +57,7 @@
         [[[[self.ref child:@"books"] queryOrderedByChild:@"user"]
           queryEqualToValue:self.userEmail] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value != [NSNull null]){
-                //NSLog(@"snapshot = %@",snapshot.value);
+
                 NSDictionary *dict = snapshot.value;
                 self.objects = [dict allKeys];
                 self.books = [NSMutableArray arrayWithArray:self.objects];
@@ -90,13 +91,17 @@
     NSString *s = self.books[indexPath.row];
     cell.textLabel.text = s;
     cell.textLabel.font = [UIFont fontWithName:@"American Typewriter" size:18.0];
-    //cell.backgroundColor = [UIColor colorWithRed:255 green:251 blue:240 alpha:1];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
 - (IBAction)backButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-02" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 }
 
 - (IBAction)contactUser:(id)sender {

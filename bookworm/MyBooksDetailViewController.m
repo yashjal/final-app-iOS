@@ -8,6 +8,7 @@
 
 #import "MyBooksDetailViewController.h"
 #import "ProfileViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface MyBooksDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *bookSummary;
@@ -66,12 +67,23 @@
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-02" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     ProfileViewController *controller = (ProfileViewController *)[segue destinationViewController];
     controller.userEmail = self.bookUser.text;
+    
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"page-flip-01a" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
     
 }
 

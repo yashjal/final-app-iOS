@@ -8,6 +8,7 @@
 
 #import "userPostsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface userPostsViewController ()
 
@@ -227,6 +228,11 @@
         return;
     }
     NSLog(@"Logged Out");
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
+    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 }
 
 -(NSString*) getDate { // Get current time in format - year - month - day - hour - min - seconds
