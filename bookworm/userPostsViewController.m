@@ -22,6 +22,16 @@
     // Do any additional setup after loading the view.
     [self updateView];
 }
+
+/*- (void) viewWillAppear:(BOOL)animated {
+    // Get current users username for our label
+     FIRUser *user = [FIRAuth auth].currentUser;
+    if (user.displayName != Nil) {
+        self.usernameLabel.text = user.displayName;
+    } else {
+        self.usernameLabel.text = user.email;
+    }
+}*/
 - (IBAction)submitPost:(id)sender {
     self.ref = [[FIRDatabase database] reference];
     FIRUser *user = [FIRAuth auth].currentUser;
@@ -180,13 +190,6 @@
             // Handle all the posts in the scroll view
             [self handlePosts:allPosts];
             
-            // Get current users username for our label
-            if (user.displayName != Nil) {
-                self.usernameLabel.text = user.displayName;
-            } else {
-                self.usernameLabel.text =[NSString stringWithFormat:@"%@", [userDict[idKey] objectForKey:@"username"]];
-            }
-            
         } withCancelBlock:^(NSError * _Nonnull error) {
             NSLog(@"%@", error.localizedDescription);
         }];
@@ -252,7 +255,13 @@
     // Minimum and maximum zoom scales
     self.scroll.minimumZoomScale = self.scroll.frame.size.width / maximumWidth;
     self.scroll.maximumZoomScale = 4.0;
-    
+    // Get current users username for our label
+    FIRUser *user = [FIRAuth auth].currentUser;
+    if (user.displayName != Nil) {
+        self.usernameLabel.text = user.displayName;
+    } else {
+        self.usernameLabel.text = user.email;
+    }
     
     // Clear message area
     self.currentPostField.text = @"Your Message...";
