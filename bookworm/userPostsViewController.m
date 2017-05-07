@@ -279,6 +279,8 @@
         return;
     }
     NSLog(@"Logged Out");
+    
+    //sound
     NSString *path = [ [NSBundle mainBundle] pathForResource:@"paper-rip-3" ofType:@"wav"];
     
     SystemSoundID theSound;

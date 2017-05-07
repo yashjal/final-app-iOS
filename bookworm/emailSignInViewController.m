@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-     self.ref = [[FIRDatabase database] reference];
+    self.ref = [[FIRDatabase database] reference];
     self.errorHidden.hidden = YES; // Hidden field for when user can't sign in
 }
 
