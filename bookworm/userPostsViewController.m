@@ -7,7 +7,6 @@
 //
 
 #import "userPostsViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface userPostsViewController ()
@@ -23,15 +22,6 @@
     [self updateView];
 }
 
-/*- (void) viewWillAppear:(BOOL)animated {
-    // Get current users username for our label
-     FIRUser *user = [FIRAuth auth].currentUser;
-    if (user.displayName != Nil) {
-        self.usernameLabel.text = user.displayName;
-    } else {
-        self.usernameLabel.text = user.email;
-    }
-}*/
 - (IBAction)submitPost:(id)sender {
     self.ref = [[FIRDatabase database] reference];
     FIRUser *user = [FIRAuth auth].currentUser;

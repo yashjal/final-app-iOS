@@ -7,7 +7,6 @@
 //
 
 #import "registerViewController.h"
-#include <CommonCrypto/CommonDigest.h>
 
 @interface registerViewController ()
 @property (strong, nonatomic) FIRDatabaseReference *ref;
@@ -43,10 +42,31 @@
                                 [data setObject:self.regUsername.text forKey:@"username"];
                                 [data setObject:self.regEmail.text forKey:@"email"];
                                  [[[_ref child:@"users"] childByAutoId] setValue:data];
-                                 [self performSegueWithIdentifier:@"regToMain" sender:Nil];
+                                 [self animateView:@"regToMain"];
                                  }
                              }];
     }
+}
+
+// Add animation to open to next view controller like opening a book
+-(void) animateView:(NSString*) segueIdentifier{
+    self.view.layer.anchorPoint = CGPointMake(0, 0.5);
+    self.view.center  = CGPointMake(self.view.center.x - self.view.bounds.size.width / 2.0f, self.view.center.y);
+    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
+        CATransform3D d3 = CATransform3DIdentity;
+        d3 = CATransform3DMakeRotation(3.141f/2.0f, 0.0f, -1.0f, 0.0f);
+        d3.m34 = 0.001f;
+        d3.m14 = -0.0015f;
+        self.view.layer.transform = d3;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self performSegueWithIdentifier:segueIdentifier sender:Nil];
+            
+        }
+    }
+     ];
+   
 }
 
 
